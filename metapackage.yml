@@ -1,0 +1,66 @@
+name: metapackage
+code:
+  strategy: make-package-yourself
+debian:
+  control:
+    description: Meta-package that depends on all packages that I use
+  rules: |
+    %:
+    	dh $@
+  dependencies:
+    - ${shlibs:Depends}
+    - gnome-session
+    - nautilus
+    - gnome-system-monitor
+    - gedit
+    - network-manager-gnome
+    - google-perftools
+    - valgrind
+    - strace
+    - bison
+    - hugo
+    - libjemalloc2
+    - libjemalloc-dev
+    - jq
+    - jsonnet
+    - nmap
+    - ragel
+    - yq
+    - pipx
+    - build-essential
+    - cmake
+    - gnupg2
+    - just
+    - git-delta
+    - bat
+    - rustfilt
+    - apt-listbugs
+    - net-tools
+    - flatpak
+    - wget
+    - curl
+    - sqlite3
+    - meson
+    - micro
+    - fastfetch
+    - nala
+    - htop
+    - nano
+    - netselect-apt
+    - imagemagick
+    - wlogout
+    - waybar
+    - tree
+    - swaylock
+    - slurp
+    - grim
+    - hyprpaper
+    - fonts-font-awesome
+    - ffmpeg
+    - wofi
+    # local packages:
+    - hyprland
+    - hyprlock
+    - waybar-network-applet
+    - blanket
+    - localsend

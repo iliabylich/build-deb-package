@@ -1,0 +1,30 @@
+name: hyprlock
+code:
+  strategy: wget-latest-release
+  github: hyprwm/hyprlock
+install:
+  - /shared/deb-latest/hyprutils.deb
+  - libwayland-dev
+  - wayland-protocols
+  - mesa-common-dev
+  - libgl1-mesa-dev
+  - libhyprlang-dev
+  - libxkbcommon-dev
+  - libjpeg-dev
+  - libwebp-dev
+  - libmagic-dev
+  - libcairo2-dev
+  - librust-pangocairo-dev
+  - libgbm-dev
+  - libpam0g-dev
+debian:
+  control:
+    description: Hyprland's GPU-accelerated screen locking utility
+  rules: |
+    %:
+    	dh $@ --buildsystem=cmake --parallel
+
+    override_dh_auto_test:
+    	echo "Skipping dh_auto_test..."
+  dependencies:
+    - ${shlibs:Depends}

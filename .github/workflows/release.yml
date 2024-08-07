@@ -1,0 +1,56 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      justCommand1:
+        description: Just command to run (1)
+        required: true
+      justCommand2:
+        description: Just command to run (2)
+      justCommand3:
+        description: Just command to run (3)
+      justCommand4:
+        description: Just command to run (4)
+      justCommand5:
+        description: Just command to run (5)
+      justCommand6:
+        description: Just command to run (6)
+      justCommand7:
+        description: Just command to run (7)
+      justCommand8:
+        description: Just command to run (8)
+      justCommand9:
+        description: Just command to run (9)
+      justCommand10:
+        description: Just command to run (10)
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v2
+
+      - run: just ${{ github.event.inputs.justCommand1 }}
+      - run: just ${{ github.event.inputs.justCommand2 }}
+      - run: just ${{ github.event.inputs.justCommand3 }}
+      - run: just ${{ github.event.inputs.justCommand4 }}
+      - run: just ${{ github.event.inputs.justCommand5 }}
+      - run: just ${{ github.event.inputs.justCommand6 }}
+      - run: just ${{ github.event.inputs.justCommand7 }}
+      - run: just ${{ github.event.inputs.justCommand8 }}
+      - run: just ${{ github.event.inputs.justCommand9 }}
+      - run: just ${{ github.event.inputs.justCommand10 }}
+
+      - run: ls -l
+
+      - name: release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          tag: latest
+          artifacts: "*.deb"
+          token: ${{ secrets.GITHUB_TOKEN }}

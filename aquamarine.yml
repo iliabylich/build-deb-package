@@ -1,0 +1,28 @@
+name: aquamarine
+code:
+  strategy: wget-latest-release
+  github: hyprwm/aquamarine
+install:
+  - /shared/deb-latest/hyprwayland-scanner.deb
+  - /shared/deb-latest/hyprutils.deb
+  - libgles2-mesa-dev
+  - libseat-dev
+  - libinput-dev
+  - libwayland-dev
+  - wayland-protocols
+  - libpixman-1-dev
+  - libdrm-dev
+  - libgbm-dev
+  - libdisplay-info-dev
+  - hwdata
+debian:
+  control:
+    description: Aquamarine is a very light linux rendering backend library
+  rules: |
+    %:
+    	dh $@ --buildsystem=cmake --parallel
+
+    override_dh_auto_test:
+    	echo "Skipping dh_auto_test..."
+  dependencies:
+    - ${shlibs:Depends}

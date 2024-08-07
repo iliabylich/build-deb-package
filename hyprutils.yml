@@ -1,0 +1,16 @@
+name: hyprutils
+code:
+  strategy: wget-latest-release
+  github: hyprwm/hyprutils
+install:
+  - libpixman-1-dev
+debian:
+  control:
+    description: Hyprland utilities library used across the ecosystem
+  rules: |
+    %:
+    	dh $@ --buildsystem=cmake --parallel
+    override_dh_auto_test:
+    	echo "Skipping dh_auto_test..."
+  dependencies:
+    - ${shlibs:Depends}

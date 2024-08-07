@@ -1,0 +1,14 @@
+name: hyprwayland-scanner
+code:
+  strategy: wget-latest-release
+  github: hyprwm/hyprwayland-scanner
+install:
+  - libpugixml-dev
+debian:
+  control:
+    description: A Hyprland implementation of wayland-scanner, in and for C++.
+  rules: |
+    %:
+    	dh $@ --buildsystem=cmake --parallel
+  dependencies:
+    - ${shlibs:Depends}
