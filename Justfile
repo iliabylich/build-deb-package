@@ -5,23 +5,26 @@ clean:
     rm -f *.deb
     rm -rf deb-latest
 
-build-all:
-    @just build-full-hyprland
-    @just build-metapackage
-    @just build-blanket
+all:
+    @just full-hyprland
+    @just metapackage
+    @just blanket
 
-build-full-hyprland:
+full-hyprland:
     @just build hyprutils
     @just build hyprwayland-scanner
     @just build aquamarine
     @just build hyprland
     @just build hyprlock
 
-build-metapackage:
+metapackage:
     @just build metapackage
 
-build-blanket:
+blanket:
     @just build blanket
+
+waybar-network-applet:
+    @just build waybar-network-applet
 
 build name:
     ./main.sh {{name}}.yml

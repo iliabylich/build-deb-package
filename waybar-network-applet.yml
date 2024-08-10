@@ -1,0 +1,21 @@
+name: waybar-network-applet
+code:
+  strategy: wget-latest-release
+  github: iliabylich/waybar-network-applet
+install:
+  - libglib2.0-dev
+  - libpango1.0-dev
+  - libgdk-pixbuf-2.0-dev
+  - libgtk-4-dev
+  - libgtk4-layer-shell-dev
+debian:
+  control:
+    description: Network widget for waybar
+  rules: |
+    %:
+    	dh $@
+
+    override_dh_auto_build:
+    	make waybar-network-applet
+  dependencies:
+    - ${shlibs:Depends}
