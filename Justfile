@@ -28,3 +28,6 @@ waybar-network-applet:
 
 build name:
     ./main.sh {{name}}.yml
+
+deploy name:
+    ./deploy.sh {{name}}
