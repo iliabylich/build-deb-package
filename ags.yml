@@ -1,0 +1,36 @@
+name: ags
+code:
+  strategy: git-clone-latest-release
+  github: aylur/ags
+install:
+  - npm
+  - meson
+  - libgjs-dev
+  - gjs
+  - libgtk-layer-shell-dev
+  - libgtk-3-dev
+  - libpulse-dev
+  - network-manager-dev
+  - libgnome-bluetooth-3.0-dev
+  - libdbusmenu-gtk3-dev
+  - libsoup-3.0-dev
+  - libpam0g-dev
+debian:
+  control:
+    description: A customizable and extensible shell
+  rules: |
+    %:
+    	dh $@
+
+    override_dh_auto_test:
+    	echo "Skipping dh_auto_test..."
+
+    override_dh_auto_configure:
+    	npm install
+    	ln -s $$PWD/node_modules/.bin/tsc /usr/bin/tsc
+    	sed -i 's/ln -s -f $$BIN_SRC $$BIN_DEST/ln -s -f \/usr\/share\/com.github.Aylur.ags\/com.github.Aylur.ags $$BIN_DEST/g' post_install.sh
+    	cat post_install.sh
+    	dh_auto_configure
+
+  dependencies:
+    - ${shlibs:Depends}
