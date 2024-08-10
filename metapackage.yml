@@ -62,6 +62,8 @@ debian:
     - mpv
     - libnotify-bin
     - dunst
+    - stow
+    - apt-file
     # local packages:
     - hyprland
     - hyprlock
