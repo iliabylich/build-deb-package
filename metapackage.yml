@@ -58,6 +58,10 @@ debian:
     - fonts-font-awesome
     - ffmpeg
     - wofi
+    - wf-recorder
+    - mpv
+    - libnotify-bin
+    - dunst
     # local packages:
     - hyprland
     - hyprlock
