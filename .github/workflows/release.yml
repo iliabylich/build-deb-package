@@ -6,6 +6,11 @@ on:
       packageName:
         description: Just command to run
         required: true
+      runName:
+        description: an ID that is displayed in the name of the run (used for GH CLI scripting)
+        required: true
+
+run-name: "${{ github.event.inputs.runName }}"
 
 jobs:
   release:
