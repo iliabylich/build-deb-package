@@ -48,13 +48,10 @@ debian:
     - nano
     - netselect-apt
     - imagemagick
-    - wlogout
-    - waybar
     - tree
     - swaylock
     - slurp
     - grim
-    - hyprpaper
     - fonts-font-awesome
     - ffmpeg
     - wofi
@@ -70,6 +67,5 @@ debian:
     # local packages:
     - hyprland
     - hyprlock
-    - waybar-network-applet
     - blanket
     - localsend
