@@ -9,63 +9,77 @@ debian:
     	dh $@
   dependencies:
     - ${shlibs:Depends}
+
+    # Gnome
     - gnome-session
     - nautilus
     - gnome-system-monitor
-    - gedit
     - network-manager-gnome
-    - google-perftools
+    - gedit
+
+    # UI apps
+    - flatpak
+    - localsend
+    - blanket
+    - mpv
+
+    # Dev tools
+    - build-essential
+    - cmake
+    - meson
+    - ragel
     - valgrind
-    - strace
+    - google-perftools
     - bison
+    - strace
+    - rustfilt
+    - sqlite3
+
+    # CLI
     - hugo
-    - libjemalloc2
-    - libjemalloc-dev
     - jq
     - jsonnet
     - nmap
-    - ragel
     - yq
     - pipx
-    - build-essential
-    - cmake
     - gnupg2
     - just
     - git-delta
     - bat
-    - rustfilt
     - apt-listbugs
     - net-tools
-    - flatpak
     - wget
     - curl
-    - sqlite3
-    - meson
     - micro
     - fastfetch
-    - nala
     - htop
     - nano
     - netselect-apt
     - imagemagick
     - tree
-    - swaylock
-    - slurp
-    - grim
-    - fonts-font-awesome
     - ffmpeg
-    - wofi
-    - wf-recorder
-    - mpv
     - libnotify-bin
-    - dunst
     - stow
     - apt-file
+    - traceroute
+
+    # Hyprland
+    - hyprland
+    - hyprlock
+    - swaybg
+    - gjs
+    - dunst
+    - fonts-font-awesome
+    - wl-clipboard
+    - wofi
+    - wf-recorder
+    - slurp
+    - grim
+    - cliphist
+
+    # Libs
+    - libjemalloc2
+    - libjemalloc-dev
     - libgtk-4-dev
     - libgtk4-layer-shell-dev
     - libadwaita-1-dev
-    # local packages:
-    - hyprland
-    - hyprlock
-    - blanket
-    - localsend
