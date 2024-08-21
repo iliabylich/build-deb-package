@@ -16,6 +16,7 @@ debian:
     - gnome-system-monitor
     - network-manager-gnome
     - gedit
+    - loupe
 
     # UI apps
     - flatpak
@@ -34,6 +35,7 @@ debian:
     - strace
     - rustfilt
     - sqlite3
+    - gh
 
     # CLI
     - hugo
@@ -46,21 +48,15 @@ debian:
     - just
     - git-delta
     - bat
-    - apt-listbugs
-    - net-tools
-    - wget
-    - curl
     - micro
     - fastfetch
     - htop
     - nano
-    - netselect-apt
     - imagemagick
     - tree
     - ffmpeg
     - libnotify-bin
     - stow
-    - apt-file
     - traceroute
 
     # Hyprland
@@ -83,3 +79,8 @@ debian:
     - libgtk-4-dev
     - libgtk4-layer-shell-dev
     - libadwaita-1-dev
+
+    # Debian
+    - apt-listbugs
+    - apt-file
+    - netselect-apt
