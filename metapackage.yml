@@ -23,6 +23,7 @@ debian:
     - localsend
     - blanket
     - mpv
+    - pavucontrol
 
     # Dev tools
     - build-essential
@@ -36,6 +37,8 @@ debian:
     - rustfilt
     - sqlite3
     - gh
+    - pkg-config
+    - make
 
     # CLI
     - hugo
@@ -58,6 +61,7 @@ debian:
     - libnotify-bin
     - stow
     - traceroute
+    - wget
 
     # Hyprland
     - hyprland
@@ -79,6 +83,8 @@ debian:
     - libgtk-4-dev
     - libgtk4-layer-shell-dev
     - libadwaita-1-dev
+    - libvte-2.91-gtk4-dev
+    - blueprint-compiler
 
     # Debian
     - apt-listbugs
