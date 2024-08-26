@@ -15,8 +15,6 @@ debian:
     - nautilus
     - gnome-system-monitor
     - network-manager-gnome
-    - gedit
-    - loupe
 
     # UI apps
     - flatpak
@@ -24,6 +22,16 @@ debian:
     - blanket
     - mpv
     - pavucontrol
+    - transmission-gtk
+    - amberol
+    - loupe
+    - gedit
+    - baobab
+    - d-spy
+    - file-roller
+    - gnote
+    - obfuscate
+    - zenity
 
     # Dev tools
     - build-essential
