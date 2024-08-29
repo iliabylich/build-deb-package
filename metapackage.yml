@@ -11,10 +11,10 @@ debian:
     - ${shlibs:Depends}
 
     # Gnome
-    - gnome-session
+    # - gnome-session
     - nautilus
     - gnome-system-monitor
-    - network-manager-gnome
+    # - network-manager-gnome
 
     # UI apps
     - flatpak
