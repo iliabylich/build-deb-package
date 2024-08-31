@@ -104,6 +104,7 @@ debian:
     - libvte-2.91-gtk4-dev
     - gir1.2-nm-1.0
     - blueprint-compiler
+    - libgnome-volume-control
 
     # Debian
     - apt-listbugs
