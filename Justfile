@@ -27,6 +27,9 @@ ags:
 libgnome-volume-control:
     @just build libgnome-volume-control
 
+mangl:
+    @just build mangl
+
 build name:
     ./main.sh {{name}}.yml
 

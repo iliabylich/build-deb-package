@@ -1,0 +1,20 @@
+name: mangl
+code:
+  strategy: wget-latest-release
+  github: zigalenarcic/mangl
+install:
+  - libz-dev
+  - libgl-dev
+  - libglfw3-dev
+  - libfreetype6-dev
+  - libbz2-dev
+debian:
+  control:
+    description: An enhanced man page viewer for linux and BSD systems based on OpenGL and mandoc libraries
+  rules: |
+    %:
+    	dh $@
+    override_dh_usrlocal:
+    	echo "Skipping dh_usrlocal..."
+  dependencies:
+    - ${shlibs:Depends}
