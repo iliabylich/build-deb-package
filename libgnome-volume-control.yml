@@ -1,0 +1,23 @@
+name: libgnome-volume-control
+code:
+  strategy: git-clone
+  url: https://gitlab.gnome.org/GNOME/libgnome-volume-control.git
+install:
+  - meson
+  - libglib2.0-dev-bin
+  - libglib2.0-dev
+  - libpulse-dev
+  - gobject-introspection
+  - gir1.2-glib-2.0-dev
+debian:
+  control:
+    description: A sound control library with gir bindings
+  rules: |
+    %:
+    	dh $@
+
+    override_dh_auto_configure:
+    	sed -i "s/^assert(meson.is_subproject().*//" meson.build
+    	dh_auto_configure -- -Dalsa=false -Dintrospection=true -Dstatic=false -Dpkgdatadir=/usr/share/gir-1.0 -Dpkglibdir=/usr/lib/x86_64-linux-gnu/girepository-1.0
+  dependencies:
+    - ${shlibs:Depends}

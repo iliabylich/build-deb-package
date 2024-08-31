@@ -41,6 +41,13 @@ gitCloneLatestRelease() {
     git clone "https://github.com/$GITHUB.git" --filter=blob:none --branch "v$VERSION" --recursive --shallow-submodules --depth=1 "$PACKAGE_NAME-$VERSION"
 }
 
+gitClone() {
+    VERSION="0.0.$(date +%s)"
+    local url="$(getField ".code.url")"
+    log "Running git clone $url"
+    git clone "$url" --depth=1 "$PACKAGE_NAME-$VERSION"
+}
+
 buildPackageYourself() {
     VERSION="0.0.$(date +%s)"
     mkdir "$PACKAGE_NAME-$VERSION"
@@ -59,6 +66,10 @@ case "$STRATEGY" in
     "git-clone-latest-release")
         getLatestVersion
         gitCloneLatestRelease
+        ;;
+
+    "git-clone")
+        gitClone
         ;;
 
     "make-package-yourself")

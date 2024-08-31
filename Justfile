@@ -24,6 +24,9 @@ waybar-network-applet:
 ags:
     @just build ags
 
+libgnome-volume-control:
+    @just build libgnome-volume-control
+
 build name:
     ./main.sh {{name}}.yml
 
