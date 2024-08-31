@@ -10,10 +10,18 @@ debian:
   dependencies:
     - ${shlibs:Depends}
 
+    - wireplumber
+    - rtkit
+    - pipewire-pulse
+
+    - network-manager
+
     # Gnome
     # - gnome-session
     - nautilus
     - gnome-system-monitor
+    - gnome-icon-theme
+    - gnome-terminal
     # - network-manager-gnome
 
     # UI apps
@@ -47,6 +55,7 @@ debian:
     - gh
     - pkg-config
     - make
+    - git
 
     # CLI
     - hugo
@@ -70,6 +79,7 @@ debian:
     - stow
     - traceroute
     - wget
+    - curl
 
     # Hyprland
     - hyprland
@@ -92,6 +102,7 @@ debian:
     - libgtk4-layer-shell-dev
     - libadwaita-1-dev
     - libvte-2.91-gtk4-dev
+    - gir1.2-nm-1.0
     - blueprint-compiler
 
     # Debian
