@@ -16,6 +16,9 @@ debian:
 
     - network-manager
 
+    - greetd
+    - tuigreet
+
     # Gnome
     # - gnome-session
     - nautilus
