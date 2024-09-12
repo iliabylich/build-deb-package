@@ -37,8 +37,8 @@ debian:
   control:
     description: Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks.
   rules: |
-    %:
-    	dh $@ --buildsystem=cmake --parallel
+    override_dh_auto_build:
+    	make release
 
     override_dh_usrlocal:
     	echo "Skipping dh_usrlocal..."
