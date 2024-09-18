@@ -87,6 +87,7 @@ ls -l
 
 APT_INSTALL="$(getField "if has(\"install\") then .install else [] end | join(\" \")")"
 log "Installing dependencies $APT_INSTALL"
+apt update > /dev/null
 apt-get -qq install -y $APT_INSTALL > /dev/null
 
 mkdir -p debian

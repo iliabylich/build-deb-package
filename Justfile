@@ -30,6 +30,10 @@ libgnome-volume-control:
 mangl:
     @just build mangl
 
+layer-shell:
+    @just build libgnome-volume-control
+    @just build layer-shell
+
 build name:
     ./main.sh {{name}}.yml
 
