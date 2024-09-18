@@ -83,3 +83,18 @@ debian:
     - apt-listbugs
     - apt-file
     - netselect-apt
+
+    # Hyprland
+    - hyprland
+    - hyprlock
+    - swaybg
+    - dunst
+    - fonts-font-awesome
+    - wl-clipboard
+    - wofi
+    - wf-recorder
+    - slurp
+    - grim
+    - cliphist
+    - layer-shell
+    - pavucontrol
