@@ -20,3 +20,4 @@ debian:
     	install -Dm0755 target/release/layer-shell debian/layer-shell/usr/bin/layer-shell
   dependencies:
     - ${shlibs:Depends}
+    - libgnome-volume-control
