@@ -89,7 +89,6 @@ debian:
     - hyprlock
     - swaybg
     - dunst
-    - fonts-font-awesome
     - wl-clipboard
     - wofi
     - wf-recorder
