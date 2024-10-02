@@ -7,8 +7,7 @@ install:
   - libgtk-4-dev
   - libgtk4-layer-shell-dev
   - libvte-2.91-gtk4-dev
-  - libsoup-3.0-dev
-  - /shared/deb-latest/libgnome-volume-control.deb
+  - libasound2-dev
 debian:
   control:
     description: A custom layer shell
@@ -18,9 +17,8 @@ debian:
     override_dh_auto_build:
     	cargo build --release
     override_dh_auto_install:
-    	install -Dm0755 target/release/layer-shell debian/layer-shell/usr/bin/layer-shell
+    	install -Dm0755 target/release/layer-shell-ui debian/layer-shell/usr/bin/layer-shell
   dependencies:
     - ${shlibs:Depends}
-    - libgnome-volume-control
     - fonts-font-awesome
     - fonts-weather-icons
