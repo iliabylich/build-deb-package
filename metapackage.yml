@@ -76,7 +76,6 @@ debian:
     - libgtk4-layer-shell-dev
     - libadwaita-1-dev
     - libvte-2.91-gtk4-dev
-    - gir1.2-nm-1.0
     - blueprint-compiler
 
     # Debian
@@ -90,7 +89,6 @@ debian:
     - swaybg
     - dunst
     - wl-clipboard
-    - wofi
     - wf-recorder
     - slurp
     - grim
