@@ -3,5 +3,24 @@ FROM debian:unstable
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
-RUN apt install -y wget git debhelper cmake pkg-config jq yq > /dev/null
-RUN apt install -y rustc libgtk-4-dev libgtk4-layer-shell-dev libvte-2.91-gtk4-dev libasound2-dev
+RUN apt install --no-install-recommends -y \
+    wget \
+    curl \
+    git \
+    debhelper \
+    cmake \
+    pkg-config \
+    jq \
+    yq \
+    libgtk-4-dev \
+    libgtk4-layer-shell-dev \
+    libvte-2.91-gtk4-dev \
+    libasound2-dev
+
+RUN apt install -y ca-certificates
+RUN update-ca-certificates
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rustup-init.sh
+RUN chmod +x /tmp/rustup-init.sh
+RUN /tmp/rustup-init.sh --profile minimal -y
+
+RUN rm -rf /var/lib/apt/lists/*

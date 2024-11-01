@@ -8,7 +8,7 @@ if (( $# != 1 )); then
 fi
 
 PACKAGE="$1"
-STAMP=$(date +%s)
+STAMP=$(date "+%Y-%m-%d %H:%M:%S")
 
 source .wait-for-run-to-finish.sh
 
