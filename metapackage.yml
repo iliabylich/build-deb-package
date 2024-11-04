@@ -14,6 +14,7 @@ debian:
     - gnome-system-monitor
     - gnome-icon-theme
     - gnome-terminal
+    - gdm3
 
     # UI apps
     - flatpak
