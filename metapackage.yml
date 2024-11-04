@@ -60,7 +60,6 @@ debian:
     - fastfetch
     - htop
     - nano
-    - imagemagick
     - tree
     - ffmpeg
     - libnotify-bin
