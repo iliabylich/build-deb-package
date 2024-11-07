@@ -3,7 +3,6 @@ code:
   strategy: git-clone
   url: https://github.com/iliabylich/layer-shell.git
 install:
-  - rustc
   - libgtk-4-dev
   - libgtk4-layer-shell-dev
   - libvte-2.91-gtk4-dev
