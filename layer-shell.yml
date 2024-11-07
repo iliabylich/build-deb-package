@@ -8,6 +8,7 @@ install:
   - libgtk4-layer-shell-dev
   - libvte-2.91-gtk4-dev
   - libasound2-dev
+  - libdbus-1-dev
 debian:
   control:
     description: A custom layer shell
