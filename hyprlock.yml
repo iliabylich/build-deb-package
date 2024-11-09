@@ -17,6 +17,7 @@ install:
   - librust-pangocairo-dev
   - libgbm-dev
   - libpam0g-dev
+  - libsdbus-c++-dev
 debian:
   control:
     description: Hyprland's GPU-accelerated screen locking utility
