@@ -15,7 +15,8 @@ RUN apt install --no-install-recommends -y \
     libgtk-4-dev \
     libgtk4-layer-shell-dev \
     libvte-2.91-gtk4-dev \
-    libasound2-dev
+    libasound2-dev \
+    g++
 
 RUN apt install -y ca-certificates
 RUN update-ca-certificates
