@@ -21,5 +21,3 @@ debian:
     	install -Dm0755 target/release/layer-shell-ui debian/layer-shell/usr/bin/layer-shell
   dependencies:
     - ${shlibs:Depends}
-    - fonts-font-awesome
-    - fonts-weather-icons
