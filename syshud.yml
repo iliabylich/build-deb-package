@@ -1,0 +1,23 @@
+version: dummy
+git_clone: https://github.com/System64fumo/syshud.git
+install:
+  - libgtkmm-4.0-dev
+  - libwireplumber-0.5-dev
+  - libevdev-dev
+debian:
+  control:
+    description: Simple heads up display written in gtkmm 4
+  rules: |
+    %:
+    	dh $@
+
+    override_dh_auto_build:
+    	make all
+
+    override_dh_auto_install:
+    	DESTDIR="debian/syshud" make install
+
+    override_dh_usrlocal:
+    	echo "Skipping dh_usrlocal..."
+  dependencies:
+    - ${shlibs:Depends}
