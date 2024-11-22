@@ -24,6 +24,9 @@ layer-shell:
 fx:
     @just build fx
 
+syshud:
+    @just build syshud
+
 build package:
     ./local/build.sh {{package}}
 
