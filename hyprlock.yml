@@ -1,7 +1,5 @@
-name: hyprlock
-code:
-  strategy: wget-latest-release
-  github: hyprwm/hyprlock
+version: "0.5.0"
+git_clone: https://github.com/hyprwm/hyprlock.git
 install:
   - /shared/deb-latest/hyprutils.deb
   - libwayland-dev
@@ -24,6 +22,9 @@ debian:
   rules: |
     %:
     	dh $@ --buildsystem=cmake --parallel
+
+    override_dh_auto_build:
+    	cd obj-x86_64-linux-gnu && make -j`nproc` VERBOSE=1
 
     override_dh_auto_test:
     	echo "Skipping dh_auto_test..."

@@ -1,6 +1,5 @@
-name: metapackage
-code:
-  strategy: make-package-yourself
+version: dummy
+git_clone: dummy
 debian:
   control:
     description: Meta-package that depends on all packages that I use

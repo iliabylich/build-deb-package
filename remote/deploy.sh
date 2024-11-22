@@ -3,14 +3,14 @@
 set -eu
 
 if (( $# != 1 )); then
-    echo "Usage: ./deploy.sh <package-name>"
+    echo "Usage: $0 <package>"
     exit 1
 fi
 
 PACKAGE="$1"
 STAMP=$(date "+%Y-%m-%d %H:%M:%S")
 
-source .wait-for-run-to-finish.sh
+source remote/.wait-for-run-to-finish.sh
 
 RUN_NAME="Building $PACKAGE at $STAMP"
 gh workflow run release -f packageName="$PACKAGE" -f runName="$RUN_NAME"

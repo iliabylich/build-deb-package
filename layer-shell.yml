@@ -1,7 +1,5 @@
-name: layer-shell
-code:
-  strategy: git-clone
-  url: https://github.com/iliabylich/layer-shell.git
+version: dummy
+git_clone: https://github.com/iliabylich/layer-shell.git
 install:
   - libgtk-4-dev
   - libgtk4-layer-shell-dev

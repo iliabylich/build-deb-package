@@ -1,7 +1,5 @@
-name: hyprland
-code:
-  strategy: git-clone-latest-release
-  github: hyprwm/hyprland
+version: "0.45.2"
+git_clone: https://github.com/hyprwm/hyprland.git
 install:
   - /shared/deb-latest/hyprutils.deb
   - /shared/deb-latest/aquamarine.deb

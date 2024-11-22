@@ -2,7 +2,7 @@
 
 set -eu
 
-source .wait-for-run-to-finish.sh
+source remote/.wait-for-run-to-finish.sh
 
 STAMP=$(date "+%Y-%m-%d %H:%M:%S")
 RUN_NAME="Rebuilding docker image at $STAMP"

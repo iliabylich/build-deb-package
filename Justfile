@@ -15,23 +15,14 @@ full-hyprland:
 metapackage:
     @just build metapackage
 
-blanket:
-    @just build blanket
-
-waybar-network-applet:
-    @just build waybar-network-applet
-
-ags:
-    @just build ags
-
 mangl:
     @just build mangl
 
 layer-shell:
     @just build layer-shell
 
-build name:
-    ./main.sh {{name}}.yml
+build package:
+    ./local/build.sh {{package}}
 
-deploy name:
-    ./deploy.sh {{name}}
+deploy package:
+    ./remote/deploy.sh {{package}}

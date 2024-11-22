@@ -1,7 +1,5 @@
-name: hyprwayland-scanner
-code:
-  strategy: wget-latest-release
-  github: hyprwm/hyprwayland-scanner
+version: "0.4.2"
+git_clone: https://github.com/hyprwm/hyprwayland-scanner.git
 install:
   - libpugixml-dev
 debian:

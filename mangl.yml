@@ -1,7 +1,5 @@
-name: mangl
-code:
-  strategy: wget-latest-release
-  github: zigalenarcic/mangl
+version: "1.1.5"
+git_clone: https://github.com/zigalenarcic/mangl.git
 install:
   - libz-dev
   - libgl-dev

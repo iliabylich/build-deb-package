@@ -1,7 +1,5 @@
-name: hyprutils
-code:
-  strategy: wget-latest-release
-  github: hyprwm/hyprutils
+version: "0.2.6"
+git_clone: https://github.com/hyprwm/hyprutils.git
 install:
   - libpixman-1-dev
 debian:
