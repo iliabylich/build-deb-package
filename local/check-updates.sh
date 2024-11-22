@@ -22,7 +22,7 @@ get_latest_remote_tag() {
     gh release view \
         -R "$github_url" \
         --json "tagName" \
-        --jq ".tagName"
+        --jq ".tagName" | sed -e "s/^v//"
 }
 
 for config in *.yml; do
@@ -40,10 +40,10 @@ for config in *.yml; do
         latest_remote_tag=$(get_latest_remote_tag)
         info "Latest remote tag: $latest_remote_tag"
 
-        if [[ "$latest_remote_tag" == "v$local_version" ]]; then
+        if [[ "$latest_remote_tag" == "$local_version" ]]; then
             ok "NO UPDATES"
         else
-            err "UPDATE AVAILABLE"
+            err "UPDATE AVAILABLE $local_version -> $latest_remote_tag"
         fi
     fi
 done

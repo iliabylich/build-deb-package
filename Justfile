@@ -21,6 +21,9 @@ mangl:
 layer-shell:
     @just build layer-shell
 
+fx:
+    @just build fx
+
 build package:
     ./local/build.sh {{package}}
 
