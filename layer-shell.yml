@@ -7,6 +7,8 @@ install:
   - libpipewire-0.3-dev
   - libdbus-1-dev
   - libssl-dev
+  - libclang1
+  - clang-19
 debian:
   control:
     description: A custom layer shell
