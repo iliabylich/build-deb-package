@@ -12,12 +12,8 @@ RUN apt update && \
         pkg-config \
         jq \
         yq \
-        libgtk-4-dev \
-        libgtk4-layer-shell-dev \
-        libvte-2.91-gtk4-dev \
-        libasound2-dev \
-        g++ && \
-    apt install -y ca-certificates && \
+        g++ \
+    && apt install -y ca-certificates && \
     update-ca-certificates && \
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rustup-init.sh && \
     chmod +x /tmp/rustup-init.sh && \
