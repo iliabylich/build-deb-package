@@ -45,6 +45,8 @@ debian:
     - pkg-config
     - make
     - git
+    - llvm
+    - lld
 
     # CLI
     - hugo
@@ -67,6 +69,7 @@ debian:
     - traceroute
     - wget
     - curl
+    - fx
 
     # Libs
     - libjemalloc2
