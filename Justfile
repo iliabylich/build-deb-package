@@ -8,6 +8,7 @@ clean:
 full-hyprland:
     @just build hyprutils
     @just build hyprwayland-scanner
+    @just build hyprgraphics
     @just build aquamarine
     @just build hyprland
     @just build hyprlock

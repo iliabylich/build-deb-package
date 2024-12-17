@@ -1,35 +1,37 @@
-version: "0.45.2"
+version: "0.46.0"
 git_clone: https://github.com/hyprwm/hyprland.git
 install:
-  - /shared/deb-latest/hyprutils.deb
-  - /shared/deb-latest/aquamarine.deb
-  - /shared/deb-latest/hyprwayland-scanner.deb
   - ninja-build
   - libgles2-mesa-dev
-  - libhyprcursor-dev
+
+  - /shared/deb-latest/aquamarine.deb
   - libhyprlang-dev
-  - libpango1.0-dev
-  - libcairo2-dev
-  - librust-pangocairo-dev
+  - libhyprcursor-dev
+  - /shared/deb-latest/hyprutils.deb
+  - /shared/deb-latest/hyprgraphics.deb
+  - /shared/deb-latest/hyprwayland-scanner.deb
+
   - libxkbcommon-dev
-  - libliftoff-dev
-  - xwayland
-  - libxcb-util-dev
+  - uuid-dev
+  - libwayland-dev
+  - wayland-protocols
+  - libcairo2-dev
+  - libpango1.0-dev
+  - libpixman-1-dev
+  - libxcursor-dev
+  - libdrm-dev
+  - libinput-dev
+  - libgbm-dev
+  - libre2-dev
+
+  # for XWayland (see NO_XWAYLAND)
   - libxcb-xfixes0-dev
   - libxcb-icccm4-dev
   - libxcb-composite0-dev
   - libxcb-res0-dev
-  - libxcb-ewmh-dev
   - libxcb-errors-dev
+
   - libtomlplusplus-dev
-  - libwayland-dev
-  - wayland-protocols
-  - libgbm-dev
-  - libseat-dev
-  - libinput-dev
-  - libdrm-dev
-  - libdisplay-info-dev
-  - hwdata
 
 debian:
   control:
