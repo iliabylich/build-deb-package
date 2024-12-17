@@ -1,2 +1,4 @@
 *.deb
 /deb-latest
+/target
+Cargo.lock
