@@ -29,7 +29,7 @@ syshud:
     @just build syshud
 
 build package:
-    ./local/build.sh {{package}}
+    sudo docker run --rm -e CONFIG_PATH=/shared/{{package}}.toml -t -v $PWD:/shared ghcr.io/iliabylich/debian-unstable-builder:latest
 
 deploy package:
     ./remote/deploy.sh {{package}}

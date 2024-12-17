@@ -1,0 +1,18 @@
+version = "0-0-stamp"
+dependencies = []
+source = "none"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "Terminal JSON viewer & processor"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = [
+    "wget https://github.com/antonmedv/fx/releases/download/35.0.0/fx_linux_amd64 -O fx",
+]
+override_dh_auto_install = ["install -Dm0755 fx debian/fx/usr/bin/fx"]
