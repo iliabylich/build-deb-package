@@ -1,0 +1,40 @@
+name: rebuild-builder-bin
+
+on:
+  workflow_dispatch:
+    inputs:
+      runName:
+        description: an ID that is displayed in the name of the run (used for GH CLI scripting)
+        required: true
+
+run-name: "${{ github.event.inputs.runName }}"
+
+env:
+  IMAGE_NAME: debian-unstable-builder
+  IMAGE_ID: ghcr.io/iliabylich/debian-unstable-builder
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo build --release
+
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          removeArtifacts: true
+          tag: builder-bin
+          artifacts: target/release/build-deb-package
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: docker build . --file docker/Dockerfile --tag $IMAGE_NAME --label "runnumber=$GITHUB_RUN_ID"
+      - run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - run: docker tag $IMAGE_NAME $IMAGE_ID:latest
+      - run: docker push $IMAGE_ID:latest
