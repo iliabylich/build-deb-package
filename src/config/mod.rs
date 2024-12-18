@@ -50,7 +50,7 @@ impl Config {
         self.source.fetch(&mut plan, &build_dir);
         plan.cwd(&build_dir);
 
-        plan.exec("ls", ["-l"]);
+        plan.exec("ls", ["-l", "--color=always"]);
 
         install_dependencies(&mut plan, self.dependencies);
 
@@ -58,7 +58,7 @@ impl Config {
 
         plan.exec("dh", ["binary"]);
         plan.cwd("/build");
-        plan.exec("ls", ["-l"]);
+        plan.exec("ls", ["-l", "--color=always"]);
 
         let filename = format!("{package_name}_{version}_amd64.deb");
 

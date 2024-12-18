@@ -47,7 +47,12 @@ impl Plan {
 
     pub(crate) fn run(self) -> miette::Result<()> {
         for script in self.actions {
-            script.run()?;
+            println!("::group::{}", script.header());
+            let result = script.run();
+            println!("::endgroup::");
+            if result.is_err() {
+                return result;
+            }
         }
         Ok(())
     }
@@ -60,16 +65,40 @@ enum Action {
     WriteFile { path: String, contents: String },
 }
 
+const RESET: anstyle::Reset = anstyle::Reset;
+const GREEN: anstyle::Style = anstyle::Style::new()
+    .bold()
+    .fg_color(Some(anstyle::Color::Ansi(anstyle::AnsiColor::Green)));
+const YELLOW: anstyle::Style = anstyle::Style::new()
+    .bold()
+    .fg_color(Some(anstyle::Color::Ansi(anstyle::AnsiColor::Yellow)));
+
 impl Action {
-    fn explain(self) {
+    fn explain(&self) {
+        println!("{}", self.explanation());
+    }
+
+    fn explanation(&self) -> String {
         match self {
-            Self::ChangeWorkingDir { path } => println!("cwd {path}"),
-            Self::Script { exe, args } => println!("{} {}", exe, args.join(" ")),
-            Self::WriteFile { path, contents } => println!("Writing to {path}:\n{contents}"),
+            Self::ChangeWorkingDir { path } => format!("{GREEN}cwd {path}{RESET}"),
+            Self::Script { exe, args } => format!("{GREEN}{} {}{RESET}", exe, args.join(" ")),
+            Self::WriteFile { path, contents } => {
+                format!("{YELLOW}Writing to {path}:{RESET}\n{contents}")
+            }
+        }
+    }
+
+    fn header(&self) -> String {
+        match self {
+            Action::ChangeWorkingDir { path } => format!("cwd to {path}"),
+            Action::Script { exe, args } => format!("running {} {}", exe, args.join(" ")),
+            Action::WriteFile { path, .. } => format!("writing to {path}"),
         }
     }
 
     fn run(self) -> miette::Result<()> {
+        self.explain();
+
         match self {
             Self::ChangeWorkingDir { path } => cwd(path),
             Self::Script { exe, args } => spawn_and_forward_stdout_and_stderr(exe, args),
@@ -79,8 +108,6 @@ impl Action {
 }
 
 fn cwd(path: String) -> miette::Result<()> {
-    println!("Changing working directory to {path}");
-
     std::env::set_current_dir(&path)
         .into_diagnostic()
         .with_context(|| format!("failed to change working directory to {path}"))?;
@@ -89,8 +116,6 @@ fn cwd(path: String) -> miette::Result<()> {
 }
 
 fn spawn_and_forward_stdout_and_stderr(exe: String, args: Vec<String>) -> miette::Result<()> {
-    println!("Running {} {:?}", exe, args);
-
     let mut child = std::process::Command::new(exe.clone())
         .args(args.clone())
         .stdout(Stdio::piped())
@@ -150,8 +175,6 @@ fn spawn_and_forward_stdout_and_stderr(exe: String, args: Vec<String>) -> miette
 }
 
 fn write_file(path: String, contents: String) -> miette::Result<()> {
-    println!("Writing to {path}:\n{}", contents);
-
     std::fs::write(&path, contents)
         .into_diagnostic()
         .with_context(|| format!("Failed to write to {path}"))
