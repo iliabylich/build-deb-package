@@ -1,0 +1,27 @@
+version = { specific = "0.1.1" }
+dependencies = [
+    "/shared/deb-latest/hyprutils.deb",
+    "libpixman-1-dev",
+    "libcairo2-dev",
+    "libjpeg-dev",
+    "libwebp-dev",
+    "libmagic-dev",
+    "libjxl-dev",
+]
+
+[source.git-clone]
+url = "https://github.com/hyprwm/hyprgraphics.git"
+branch_or_tag = "v0.1.1"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "Hyprland graphics / resource utilities"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@ --buildsystem=cmake --parallel"]
+override_dh_auto_build = ["cd obj-x86_64-linux-gnu && make -j`nproc` VERBOSE=1"]
+override_dh_auto_test = ["echo \"Skipping dh_auto_test...\""]

@@ -1,0 +1,35 @@
+version = { specific = "0.5.0" }
+dependencies = [
+    "/shared/deb-latest/hyprutils.deb",
+    "libwayland-dev",
+    "wayland-protocols",
+    "mesa-common-dev",
+    "libgl1-mesa-dev",
+    "libhyprlang-dev",
+    "libxkbcommon-dev",
+    "libjpeg-dev",
+    "libwebp-dev",
+    "libmagic-dev",
+    "libcairo2-dev",
+    "librust-pangocairo-dev",
+    "libgbm-dev",
+    "libpam0g-dev",
+    "libsdbus-c++-dev",
+]
+
+[source.git-clone]
+url = "https://github.com/hyprwm/hyprlock.git"
+branch_or_tag = "v0.5.0"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "Hyprland's GPU-accelerated screen locking utility"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@ --buildsystem=cmake --parallel"]
+override_dh_auto_build = ["cd obj-x86_64-linux-gnu && make -j`nproc` VERBOSE=1"]
+override_dh_auto_test = ["echo \"Skipping dh_auto_test...\""]

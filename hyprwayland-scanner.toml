@@ -1,0 +1,17 @@
+version = { specific = "0.4.2" }
+dependencies = ["libpugixml-dev"]
+
+[source.git-clone]
+url = "https://github.com/hyprwm/hyprwayland-scanner.git"
+branch_or_tag = "v0.4.2"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "A Hyprland implementation of wayland-scanner, in and for C++."
+dependencies = []
+
+[debian.rules]
+"%" = ["dh $@ --buildsystem=cmake --parallel"]

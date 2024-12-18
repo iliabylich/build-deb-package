@@ -1,0 +1,24 @@
+version = { specific = "1.1.5" }
+dependencies = [
+    "libz-dev",
+    "libgl-dev",
+    "libglfw3-dev",
+    "libfreetype6-dev",
+    "libbz2-dev",
+]
+
+[source.git-clone]
+url = "https://github.com/zigalenarcic/mangl.git"
+branch_or_tag = "v1.1.5"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "An enhanced man page viewer for linux and BSD systems based on OpenGL and mandoc libraries"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_usrlocal = ["echo \"Skipping dh_usrlocal...\""]

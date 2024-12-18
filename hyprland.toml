@@ -1,0 +1,51 @@
+version = { specific = "0.46.0" }
+dependencies = [
+    "ninja-build",
+    "libgles2-mesa-dev",
+
+    "/shared/deb-latest/aquamarine.deb",
+    "libhyprlang-dev",
+    "libhyprcursor-dev",
+    "/shared/deb-latest/hyprutils.deb",
+    "/shared/deb-latest/hyprgraphics.deb",
+    "/shared/deb-latest/hyprwayland-scanner.deb",
+
+    "libxkbcommon-dev",
+    "uuid-dev",
+    "libwayland-dev",
+    "wayland-protocols",
+    "libcairo2-dev",
+    "libpango1.0-dev",
+    "libpixman-1-dev",
+    "libxcursor-dev",
+    "libdrm-dev",
+    "libinput-dev",
+    "libgbm-dev",
+    "libre2-dev",
+
+    # for XWayland (see NO_XWAYLAND)
+    "libxcb-xfixes0-dev",
+    "libxcb-icccm4-dev",
+    "libxcb-composite0-dev",
+    "libxcb-res0-dev",
+    "libxcb-errors-dev",
+
+    "libtomlplusplus-dev",
+    "libpugixml-dev",
+]
+
+[source.git-clone]
+url = "https://github.com/hyprwm/hyprland.git"
+branch_or_tag = "v0.46.0"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks."
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+override_dh_auto_build = ["make release"]
+override_dh_usrlocal = ["echo \"Skipping dh_usrlocal...\""]
