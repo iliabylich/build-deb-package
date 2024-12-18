@@ -2,6 +2,9 @@
 
 set -eu
 
+cargo build
+EXE=target/debug/build-deb-package
+
 color() {
     local color="$1"
     local line="$2"
@@ -20,30 +23,40 @@ info() {
 
 get_latest_remote_tag() {
     gh release view \
-        -R "$github_url" \
+        -R "$git_url" \
         --json "tagName" \
-        --jq ".tagName" | sed -e "s/^v//"
+        --jq ".tagName"
 }
 
-for config in *.yml; do
+for config in *.toml; do
+    if [[ "$config" == "Cargo.toml" ]]; then
+        continue
+    fi
+
     echo
-    yaml=$(cat "$config")
-    github_url=$(echo "$yaml" | yq -r ".git_clone")
-    local_version=$(echo "$yaml" | yq -r ".version")
 
-    if [[ "$github_url" == "dummy" ]]; then
-        info "Skipping dummy repo"
-    elif [[ "$local_version" == "dummy" ]]; then
-        info "Skipping dummy version"
+    git_url="$(CONFIG_PATH=$config $EXE print-git-url)"
+    git_tag_or_branch="$(CONFIG_PATH=$config $EXE print-git-tag-or-branch)"
+
+    if [[ "$git_url" == "none" ]]; then
+        info "skipping, no git url"
+        continue
+    fi
+
+    if [[ "$git_tag_or_branch" == "master" || "$git_tag_or_branch" == "main" ]]; then
+        info "skipping, not a tag ($git_tag_or_branch branch)"
+        continue
+    fi
+
+    local_tag="$git_tag_or_branch"
+
+    info "Github: $git_url"
+    latest_remote_tag=$(get_latest_remote_tag)
+    info "Latest remote tag: $latest_remote_tag"
+
+    if [[ "$latest_remote_tag" == "$local_tag" ]]; then
+        ok "NO UPDATES"
     else
-        info "Github: $github_url"
-        latest_remote_tag=$(get_latest_remote_tag)
-        info "Latest remote tag: $latest_remote_tag"
-
-        if [[ "$latest_remote_tag" == "$local_version" ]]; then
-            ok "NO UPDATES"
-        else
-            err "UPDATE AVAILABLE $local_version -> $latest_remote_tag"
-        fi
+        err "UPDATE AVAILABLE $local_tag -> $latest_remote_tag"
     fi
 done

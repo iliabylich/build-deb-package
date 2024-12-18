@@ -31,7 +31,7 @@ syshud:
 build package:
     sudo docker run --rm -e CONFIG_PATH=/shared/{{package}}.toml -t -v $PWD:/shared ghcr.io/iliabylich/debian-unstable-builder:latest
 
-validate package:
+parse package:
     sudo docker run --rm -e CONFIG_PATH=/shared/{{package}}.toml -it -v $PWD:/shared --entrypoint /bin/build-deb-package ghcr.io/iliabylich/debian-unstable-builder:latest parse
 
 explain package:

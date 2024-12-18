@@ -33,4 +33,18 @@ impl Source {
             }
         }
     }
+
+    pub(crate) fn git_url(&self) -> Option<&str> {
+        match self {
+            Source::None => None,
+            Source::GitClone { url, .. } => Some(url),
+        }
+    }
+
+    pub(crate) fn git_branch_or_tag(&self) -> Option<&str> {
+        match self {
+            Source::None => None,
+            Source::GitClone { branch_or_tag, .. } => Some(branch_or_tag),
+        }
+    }
 }

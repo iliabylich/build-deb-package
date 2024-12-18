@@ -7,6 +7,9 @@ pub(crate) enum Args {
     Parse,
     Explain,
     Run,
+
+    PrintGitUrl,
+    PrintGitTagOrBranch,
 }
 
 pub(crate) fn parse() -> Args {
@@ -33,6 +36,14 @@ impl Args {
             Args::Run => {
                 let plan = config.into_plan();
                 plan.run()?;
+            }
+
+            Args::PrintGitUrl => {
+                println!("{}", config.source.git_url().unwrap_or("none"));
+            }
+
+            Args::PrintGitTagOrBranch => {
+                println!("{}", config.source.git_branch_or_tag().unwrap_or("none"));
             }
         }
 
