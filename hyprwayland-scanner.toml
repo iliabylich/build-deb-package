@@ -14,4 +14,12 @@ description = "A Hyprland implementation of wayland-scanner, in and for C++."
 dependencies = []
 
 [debian.rules]
-"%" = ["dh $@ --buildsystem=cmake --parallel"]
+override_dh_auto_configure = ["echo skip"]
+override_dh_auto_build = [
+    "cmake -DCMAKE_INSTALL_PREFIX=/usr -B build",
+    "cmake --build build -j `nproc`",
+]
+override_dh_auto_install = [
+    "cmake --install build --prefix debian/hyprwayland-scanner/usr",
+]
+override_dh_auto_test = ["echo skip"]

@@ -30,6 +30,12 @@ description = "Hyprland's GPU-accelerated screen locking utility"
 dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]
-"%" = ["dh $@ --buildsystem=cmake --parallel"]
-override_dh_auto_build = ["cd obj-x86_64-linux-gnu && make -j`nproc` VERBOSE=1"]
-override_dh_auto_test = ["echo \"Skipping dh_auto_test...\""]
+override_dh_auto_configure = ["echo skip"]
+override_dh_auto_build = [
+    "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build",
+    "cmake --build ./build --config Release --target hyprlock -j`nproc`",
+]
+override_dh_auto_install = [
+    "cmake --install build --prefix debian/hyprlock/usr",
+]
+override_dh_auto_test = ["echo skip"]

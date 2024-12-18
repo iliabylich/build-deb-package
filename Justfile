@@ -3,7 +3,7 @@ default:
 
 clean:
     rm -f *.deb
-    rm -rf deb-latest
+    rm -rf deb-latest/*.deb
 
 full-hyprland:
     @just build hyprutils

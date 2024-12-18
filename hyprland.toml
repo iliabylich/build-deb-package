@@ -47,5 +47,13 @@ description = "Hyprland is an independent, highly customizable, dynamic tiling W
 dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]
-override_dh_auto_build = ["make release"]
-override_dh_usrlocal = ["echo \"Skipping dh_usrlocal...\""]
+override_dh_auto_configure = ["echo skip"]
+override_dh_auto_build = [
+    "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:STRING=${PREFIX} -S . -B ./build",
+    "cmake --build ./build --config Release --target all -j`nproc`",
+]
+override_dh_auto_install = [
+    "cmake --install build --prefix debian/hyprland/usr",
+]
+override_dh_usrlocal = ["echo skip"]
+override_dh_auto_test = ["echo skip"]
