@@ -1,0 +1,30 @@
+version = "0-0-stamp"
+dependencies = [
+    "libgtk-4-dev",
+    "libgtk4-layer-shell-dev",
+    "libvte-2.91-gtk4-dev",
+    "libpipewire-0.3-dev",
+    "libdbus-1-dev",
+    "libssl-dev",
+    "libclang1",
+    "clang-19",
+]
+
+[source.git-clone]
+url = "https://github.com/iliabylich/layer-shell.git"
+branch_or_tag = "master"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "A custom layer shell"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = ["/root/.cargo/bin/cargo build --release"]
+override_dh_auto_install = [
+    "install -Dm0755 target/release/layer-shell-ui debian/layer-shell/usr/bin/layer-shell",
+]

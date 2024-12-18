@@ -68,7 +68,7 @@ impl Control {
             dependencies,
             description,
         } = self;
-        let dependencies = dependencies.unwrap_or_default().join(" ");
+        let dependencies = dependencies.unwrap_or_default().join(", ");
 
         plan.write_file(
             format!("debian/control"),

@@ -84,11 +84,12 @@ fn base_file_name(path: &str) -> miette::Result<String> {
 }
 
 fn install_dependencies(plan: &mut Plan, dependencies: Vec<String>) {
+    plan.exec("apt", ["update"]);
+
     if dependencies.is_empty() {
         return;
     }
 
-    plan.exec("apt", ["update"]);
     plan.exec(
         "apt",
         ["install".to_string(), "-y".to_string()]

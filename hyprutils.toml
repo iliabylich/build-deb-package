@@ -1,0 +1,18 @@
+version = { specific = "0.2.6" }
+dependencies = ["libpixman-1-dev"]
+
+[source.git-clone]
+url = "https://github.com/hyprwm/hyprutils.git"
+branch_or_tag = "v0.2.6"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "Hyprland utilities library used across the ecosystem"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@ --buildsystem=cmake --parallel"]
+override_dh_auto_test = ["echo \"Skipping dh_auto_test...\""]

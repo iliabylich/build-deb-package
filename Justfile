@@ -31,5 +31,14 @@ syshud:
 build package:
     sudo docker run --rm -e CONFIG_PATH=/shared/{{package}}.toml -t -v $PWD:/shared ghcr.io/iliabylich/debian-unstable-builder:latest
 
+validate package:
+    sudo docker run --rm -e CONFIG_PATH=/shared/{{package}}.toml -it -v $PWD:/shared --entrypoint /bin/build-deb-package ghcr.io/iliabylich/debian-unstable-builder:latest parse
+
+explain package:
+    sudo docker run --rm -e CONFIG_PATH=/shared/{{package}}.toml -it -v $PWD:/shared --entrypoint /bin/build-deb-package ghcr.io/iliabylich/debian-unstable-builder:latest explain
+
 deploy package:
     ./remote/deploy.sh {{package}}
+
+docker-sh:
+    sudo docker run --rm -it -v $PWD:/shared --entrypoint bash ghcr.io/iliabylich/debian-unstable-builder:latest
