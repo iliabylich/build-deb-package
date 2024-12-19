@@ -16,6 +16,7 @@ compat = { version = 10 }
 
 [debian.control]
 description = "Simple heads up display written in gtkmm 4"
+arch = "amd64"
 dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]

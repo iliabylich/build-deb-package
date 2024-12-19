@@ -11,6 +11,7 @@ compat = { version = 10 }
 
 [debian.control]
 description = "A Hyprland implementation of wayland-scanner, in and for C++."
+arch = "amd64"
 dependencies = []
 
 [debian.rules]

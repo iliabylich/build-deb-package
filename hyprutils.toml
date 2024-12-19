@@ -11,6 +11,7 @@ compat = { version = 10 }
 
 [debian.control]
 description = "Hyprland utilities library used across the ecosystem"
+arch = "amd64"
 dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]

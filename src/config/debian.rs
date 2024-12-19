@@ -60,6 +60,7 @@ impl Compat {
 pub(crate) struct Control {
     dependencies: Option<Vec<String>>,
     description: String,
+    arch: String,
 }
 
 impl Control {
@@ -67,6 +68,7 @@ impl Control {
         let Self {
             dependencies,
             description,
+            arch,
         } = self;
         let dependencies = dependencies.unwrap_or_default().join(", ");
 
@@ -82,7 +84,7 @@ Standards-Version: 4.6.2
 Package: {package_name}
 Section: utils
 Priority: extra
-Architecture: amd64
+Architecture: {arch}
 Depends: {dependencies}
 Description: {description}
 "

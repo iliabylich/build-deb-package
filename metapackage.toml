@@ -9,6 +9,7 @@ compat = { version = 10 }
 
 [debian.control]
 description = "Meta-package that depends on all packages that I use"
+arch = "amd64"
 dependencies = [
     # Gnome
     "gnome-session",
