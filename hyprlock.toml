@@ -1,6 +1,7 @@
-version = { specific = "0.5.0" }
+version = { specific = "0.6.0" }
 dependencies = [
     "/shared/deb-latest/hyprutils.deb",
+    "/shared/deb-latest/hyprgraphics.deb",
     "libwayland-dev",
     "wayland-protocols",
     "mesa-common-dev",
@@ -19,7 +20,7 @@ dependencies = [
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprlock.git"
-branch_or_tag = "v0.5.0"
+branch_or_tag = "v0.6.0"
 
 [debian]
 changelog = true
