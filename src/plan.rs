@@ -8,15 +8,17 @@ use miette::{Context, IntoDiagnostic};
 
 #[derive(Debug)]
 pub(crate) struct Plan {
-    env: Option<HashMap<String, String>>,
     actions: Vec<Action>,
+    env: HashMap<String, String>,
+    path: Vec<String>,
 }
 
 impl Plan {
-    pub(crate) fn new(env: Option<HashMap<String, String>>) -> Self {
+    pub(crate) fn new(env: HashMap<String, String>, path: Vec<String>) -> Self {
         Self {
-            env,
             actions: vec![],
+            env,
+            path,
         }
     }
 
@@ -44,10 +46,18 @@ impl Plan {
     }
 
     pub(crate) fn explain(self) {
-        if let Some(env) = self.env {
+        if !self.env.is_empty() {
             println!("{GREEN}ENV:{RESET}");
-            for (key, val) in env {
+            for (key, val) in self.env {
                 println!("{YELLOW}{key}={val}{RESET}");
+            }
+            println!();
+        }
+
+        if !self.path.is_empty() {
+            println!("{GREEN}PATH (additional):{RESET}");
+            for path in self.path {
+                println!("{YELLOW}{path}{RESET}");
             }
             println!();
         }
@@ -61,7 +71,7 @@ impl Plan {
     pub(crate) fn run(self) -> miette::Result<()> {
         for script in self.actions {
             println!("::group::{}", script.header());
-            let result = script.run(self.env.as_ref());
+            let result = script.run(&self.env, &self.path);
             println!("::endgroup::");
             if result.is_err() {
                 return result;
@@ -109,12 +119,12 @@ impl Action {
         }
     }
 
-    fn run(self, env: Option<&HashMap<String, String>>) -> miette::Result<()> {
+    fn run(self, env: &HashMap<String, String>, path: &[String]) -> miette::Result<()> {
         self.explain();
 
         match self {
             Self::ChangeWorkingDir { path } => cwd(path),
-            Self::Script { exe, args } => spawn_and_forward_stdout_and_stderr(exe, args, env),
+            Self::Script { exe, args } => spawn_and_forward_stdout_and_stderr(exe, args, env, path),
             Self::WriteFile { path, contents } => write_file(path, contents),
         }
     }
@@ -131,14 +141,18 @@ fn cwd(path: String) -> miette::Result<()> {
 fn spawn_and_forward_stdout_and_stderr(
     exe: String,
     args: Vec<String>,
-    env: Option<&HashMap<String, String>>,
+    env: &HashMap<String, String>,
+    path: &[String],
 ) -> miette::Result<()> {
     let mut command = std::process::Command::new(exe.clone());
 
-    if let Some(env) = env {
-        for (key, val) in env {
-            command.env(key, val);
-        }
+    let mut new_path = std::env::var("PATH").unwrap();
+    for path in path {
+        new_path = format!("{new_path}:{path}");
+    }
+    command.env("PATH", new_path);
+    for (key, val) in env {
+        command.env(key, val);
     }
     command.args(args.clone());
     command.stdout(Stdio::piped());

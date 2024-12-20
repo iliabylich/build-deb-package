@@ -23,6 +23,7 @@ pub(crate) struct Config {
     pub(crate) arch: String,
 
     pub(crate) env: Option<HashMap<String, String>>,
+    pub(crate) path: Option<Vec<String>>,
 }
 
 impl Config {
@@ -48,7 +49,7 @@ impl Config {
         let build_dir = format!("/build/{package_name}-{version}");
         let arch = self.arch;
 
-        let mut plan = Plan::new(self.env);
+        let mut plan = Plan::new(self.env.unwrap_or_default(), self.path.unwrap_or_default());
 
         plan.exec("mkdir", ["/build"]);
         self.source.fetch(&mut plan, &build_dir);
