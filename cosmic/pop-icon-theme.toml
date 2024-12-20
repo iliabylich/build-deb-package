@@ -1,0 +1,10 @@
+version = { specific = "3.5.1" }
+dependencies = ["meson"]
+arch = "all"
+
+[source.git-clone]
+url = "https://github.com/pop-os/icon-theme.git"
+branch_or_tag = "v3.5.1"
+
+[debian]
+changelog = false

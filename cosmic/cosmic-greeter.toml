@@ -1,0 +1,31 @@
+version = { specific = "1.0.0-alpha4" }
+dependencies = [
+    "libclang-dev",
+    "libinput-dev",
+    "libpam-dev",
+    "libwayland-dev",
+    "libxkbcommon-dev",
+    "just",
+]
+arch = "amd64"
+env = { VENDOR = "0" }
+path = ["/root/.cargo/bin"]
+additionally_produced_packages = ["cosmic-greeter-daemon"]
+
+[source.git-clone]
+url = "https://github.com/pop-os/cosmic-greeter.git"
+branch_or_tag = "epoch-1.0.0-alpha.4"
+post_clone_scripts = ["sed -i s/0.1.0/1.0.0-alpha4/g debian/changelog"]
+
+[debian]
+changelog = false
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = ["just build-release"]
+override_dh_auto_install = ["just rootdir=debian/tmp install-debian"]
+execute_after_dh_install = ["dh_installpam", "dh_installsysusers"]
+override_dh_installsystemd = [
+    "dh_installsystemd -pcosmic-greeter --no-start -r cosmic-greeter.service",
+    "dh_installsystemd -pcosmic-greeter-daemon cosmic-greeter-daemon.service",
+]

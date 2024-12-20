@@ -1,0 +1,27 @@
+version = { specific = "1.0.0-alpha4" }
+dependencies = [
+    "libegl1-mesa-dev",
+    "libfontconfig-dev",
+    "libgbm-dev",
+    "libinput-dev",
+    "libpixman-1-dev",
+    "libseat-dev",
+    "libsystemd-dev",
+    "libudev-dev",
+    "libwayland-dev",
+    "libxcb1-dev",
+    "libxkbcommon-dev",
+    "cmake",
+    "just",
+]
+arch = "amd64"
+env = { VENDOR = "0" }
+path = ["/root/.cargo/bin"]
+
+[source.git-clone]
+url = "https://github.com/pop-os/cosmic-comp.git"
+branch_or_tag = "epoch-1.0.0-alpha.4"
+post_clone_scripts = ["sed -i s/0.1/1.0.0-alpha4/g debian/changelog"]
+
+[debian]
+changelog = false

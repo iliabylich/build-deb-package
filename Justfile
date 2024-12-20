@@ -13,6 +13,17 @@ full-hyprland:
     @just build hyprland
     @just build hyprlock
 
+cosmic:
+    @just build cosmic/pop-icon-theme
+    @just build cosmic/cosmic-applets
+    @just build cosmic/cosmic-app-library
+    @just build cosmic/cosmic-bg
+    @just build cosmic/cosmic-comp
+    @just build cosmic/cosmic-edit
+    @just build cosmic/cosmic-files
+    @just build cosmic/cosmic-greeter
+    @just build cosmic/cosmic-icons
+
 metapackage:
     @just build metapackage
 

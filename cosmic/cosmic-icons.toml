@@ -1,0 +1,11 @@
+version = { specific = "1.0.0-alpha4" }
+dependencies = ["/shared/deb-latest/pop-icon-theme.deb", "just"]
+arch = "amd64"
+
+[source.git-clone]
+url = "https://github.com/pop-os/cosmic-icons.git"
+branch_or_tag = "epoch-1.0.0-alpha.4"
+post_clone_scripts = ["sed -i s/0.1.0/1.0.0-alpha4/g debian/changelog"]
+
+[debian]
+changelog = false

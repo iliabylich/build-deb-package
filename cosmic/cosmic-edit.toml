@@ -1,0 +1,18 @@
+version = { specific = "1.0.0-alpha4" }
+dependencies = ["libxkbcommon-dev", "just"]
+arch = "amd64"
+env = { VENDOR = "0" }
+path = ["/root/.cargo/bin"]
+
+[source.git-clone]
+url = "https://github.com/pop-os/cosmic-edit.git"
+branch_or_tag = "epoch-1.0.0-alpha.4"
+post_clone_scripts = ["sed -i s/0.1.0/1.0.0-alpha4/g debian/changelog"]
+
+[debian]
+changelog = false
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = ["just build-release"]
+override_dh_install = ["just rootdir=debian/cosmic-edit install"]
