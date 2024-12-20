@@ -6,7 +6,11 @@ pub(crate) enum Source {
     None,
 
     #[serde(rename = "git-clone")]
-    GitClone { url: String, branch_or_tag: String },
+    GitClone {
+        url: String,
+        branch_or_tag: String,
+        post_clone_scripts: Option<Vec<String>>,
+    },
 }
 
 impl Source {
@@ -15,7 +19,11 @@ impl Source {
             Source::None => {
                 plan.exec("mkdir", [build_dir]);
             }
-            Source::GitClone { url, branch_or_tag } => {
+            Source::GitClone {
+                url,
+                branch_or_tag,
+                post_clone_scripts,
+            } => {
                 plan.exec(
                     "git",
                     [
@@ -30,6 +38,17 @@ impl Source {
                         build_dir,
                     ],
                 );
+
+                plan.cwd(build_dir);
+
+                if let Some(post_clone_scripts) = post_clone_scripts {
+                    for script in post_clone_scripts {
+                        let mut script = script.split(" ");
+                        let exe = script.next().expect("script can't be empty");
+                        let args = script.collect::<Vec<_>>();
+                        plan.exec(exe, args);
+                    }
+                }
             }
         }
     }
