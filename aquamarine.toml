@@ -17,6 +17,7 @@ dependencies = [
     "hwdata",
     "libpugixml-dev",
 ]
+arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/aquamarine.git"
@@ -28,7 +29,6 @@ compat = { version = 10 }
 
 [debian.control]
 description = "Aquamarine is a very light linux rendering backend library"
-arch = "amd64"
 dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]

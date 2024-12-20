@@ -6,6 +6,7 @@ dependencies = [
     "libfreetype6-dev",
     "libbz2-dev",
 ]
+arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/zigalenarcic/mangl.git"
@@ -17,7 +18,6 @@ compat = { version = 10 }
 
 [debian.control]
 description = "An enhanced man page viewer for linux and BSD systems based on OpenGL and mandoc libraries"
-arch = "amd64"
 dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]

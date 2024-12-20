@@ -17,6 +17,7 @@ dependencies = [
     "libpam0g-dev",
     "libsdbus-c++-dev",
 ]
+arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprlock.git"
@@ -28,7 +29,6 @@ compat = { version = 10 }
 
 [debian.control]
 description = "Hyprland's GPU-accelerated screen locking utility"
-arch = "amd64"
 dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]

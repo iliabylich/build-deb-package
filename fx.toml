@@ -1,6 +1,7 @@
 version = "0-0-stamp"
 dependencies = []
 source = "none"
+arch = "amd64"
 
 [debian]
 changelog = true
@@ -8,7 +9,6 @@ compat = { version = 10 }
 
 [debian.control]
 description = "Terminal JSON viewer & processor"
-arch = "amd64"
 dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]

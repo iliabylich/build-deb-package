@@ -8,6 +8,7 @@ dependencies = [
     "libmagic-dev",
     "libjxl-dev",
 ]
+arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprgraphics.git"
@@ -19,7 +20,6 @@ compat = { version = 10 }
 
 [debian.control]
 description = "Hyprland graphics / resource utilities"
-arch = "amd64"
 dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]

@@ -1,5 +1,6 @@
 version = { specific = "0.4.2" }
 dependencies = ["libpugixml-dev"]
+arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprwayland-scanner.git"
@@ -11,7 +12,6 @@ compat = { version = 10 }
 
 [debian.control]
 description = "A Hyprland implementation of wayland-scanner, in and for C++."
-arch = "amd64"
 dependencies = []
 
 [debian.rules]

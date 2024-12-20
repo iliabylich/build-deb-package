@@ -33,6 +33,7 @@ dependencies = [
     "libtomlplusplus-dev",
     "libpugixml-dev",
 ]
+arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprland.git"
@@ -44,7 +45,6 @@ compat = { version = 10 }
 
 [debian.control]
 description = "Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks."
-arch = "amd64"
 dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]

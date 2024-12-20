@@ -10,7 +10,13 @@ pub(crate) struct Debian {
 }
 
 impl Debian {
-    pub(crate) fn write_files(self, plan: &mut Plan, package_name: &str, version: &str) {
+    pub(crate) fn write_files(
+        self,
+        plan: &mut Plan,
+        package_name: &str,
+        version: &str,
+        arch: &str,
+    ) {
         plan.exec("mkdir", ["-p", "debian"]);
 
         if self.changelog {
@@ -22,19 +28,12 @@ impl Debian {
         }
 
         if let Some(control) = self.control {
-            control.write(plan, package_name);
+            control.write(plan, package_name, arch);
         }
 
         if let Some(rules) = self.rules {
             write_rules(plan, rules);
         }
-    }
-
-    pub(crate) fn arch(&self) -> String {
-        self.control
-            .as_ref()
-            .map(|c| c.arch.clone())
-            .unwrap_or_else(|| String::from("amd64"))
     }
 }
 
@@ -67,15 +66,13 @@ impl Compat {
 pub(crate) struct Control {
     dependencies: Option<Vec<String>>,
     description: String,
-    arch: String,
 }
 
 impl Control {
-    fn write(self, plan: &mut Plan, package_name: &str) {
+    fn write(self, plan: &mut Plan, package_name: &str, arch: &str) {
         let Self {
             dependencies,
             description,
-            arch,
         } = self;
         let dependencies = dependencies.unwrap_or_default().join(", ");
 

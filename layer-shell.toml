@@ -9,6 +9,7 @@ dependencies = [
     "libclang1",
     "clang-19",
 ]
+arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/iliabylich/layer-shell.git"
@@ -20,7 +21,6 @@ compat = { version = 10 }
 
 [debian.control]
 description = "A custom layer shell"
-arch = "amd64"
 dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]

@@ -20,6 +20,7 @@ pub(crate) struct Config {
     pub(crate) dependencies: Vec<String>,
     pub(crate) source: Source,
     pub(crate) debian: Debian,
+    pub(crate) arch: String,
 }
 
 impl Config {
@@ -43,7 +44,7 @@ impl Config {
         let package_name = self.name;
         let version = self.version.resolve();
         let build_dir = format!("/build/{package_name}-{version}");
-        let arch = self.debian.arch();
+        let arch = self.arch;
 
         let mut plan = Plan::new();
 
@@ -55,7 +56,8 @@ impl Config {
 
         install_dependencies(&mut plan, self.dependencies);
 
-        self.debian.write_files(&mut plan, &package_name, &version);
+        self.debian
+            .write_files(&mut plan, &package_name, &version, &arch);
 
         plan.exec("dh", ["binary"]);
         plan.cwd("/build");
