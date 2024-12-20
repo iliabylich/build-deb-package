@@ -24,6 +24,7 @@ pub(crate) struct Config {
 
     pub(crate) env: Option<HashMap<String, String>>,
     pub(crate) path: Option<Vec<String>>,
+    pub(crate) additionally_produced_packages: Option<Vec<String>>,
 }
 
 impl Config {
@@ -66,14 +67,31 @@ impl Config {
         plan.cwd("/build");
         plan.exec("ls", ["-l", "--color=always"]);
 
-        let filename = format!("{package_name}_{version}_{arch}.deb");
+        let copy_deb = |plan: &mut Plan, package_name: &str| {
+            let filename = format!("{package_name}_{version}_{arch}.deb");
 
-        let dest1 = format!("/shared/{filename}");
-        plan.exec("cp", [&filename, &dest1]);
+            let dest1 = format!("/shared/{filename}");
+            plan.exec("cp", [&filename, &dest1]);
 
-        plan.exec("mkdir", ["-p", "/shared/deb-latest"]);
-        let dest2 = format!("/shared/deb-latest/{package_name}.deb");
-        plan.exec("cp", [&filename, &dest2]);
+            plan.exec("mkdir", ["-p", "/shared/deb-latest"]);
+            let dest2 = format!("/shared/deb-latest/{package_name}.deb");
+            plan.exec("cp", [&filename, &dest2]);
+        };
+
+        copy_deb(&mut plan, &package_name);
+
+        // let dest1 = format!("/shared/{filename}");
+        // plan.exec("cp", [&filename, &dest1]);
+
+        // plan.exec("mkdir", ["-p", "/shared/deb-latest"]);
+        // let dest2 = format!("/shared/deb-latest/{package_name}.deb");
+        // plan.exec("cp", [&filename, &dest2]);
+
+        if let Some(additionally_produced_packages) = self.additionally_produced_packages {
+            for package_name in additionally_produced_packages {
+                copy_deb(&mut plan, &package_name)
+            }
+        }
 
         plan
     }
