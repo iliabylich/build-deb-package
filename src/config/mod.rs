@@ -1,7 +1,7 @@
 use crate::plan::Plan;
 use miette::{Context, IntoDiagnostic};
 use serde::Deserialize;
-use std::path::Path;
+use std::{collections::HashMap, path::Path};
 
 mod debian;
 mod source;
@@ -21,6 +21,8 @@ pub(crate) struct Config {
     pub(crate) source: Source,
     pub(crate) debian: Debian,
     pub(crate) arch: String,
+
+    pub(crate) env: Option<HashMap<String, String>>,
 }
 
 impl Config {
@@ -46,7 +48,7 @@ impl Config {
         let build_dir = format!("/build/{package_name}-{version}");
         let arch = self.arch;
 
-        let mut plan = Plan::new();
+        let mut plan = Plan::new(self.env);
 
         plan.exec("mkdir", ["/build"]);
         self.source.fetch(&mut plan, &build_dir);

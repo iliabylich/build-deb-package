@@ -1,4 +1,5 @@
 use std::{
+    collections::HashMap,
     io::{BufRead, BufReader},
     process::Stdio,
 };
@@ -7,12 +8,16 @@ use miette::{Context, IntoDiagnostic};
 
 #[derive(Debug)]
 pub(crate) struct Plan {
+    env: Option<HashMap<String, String>>,
     actions: Vec<Action>,
 }
 
 impl Plan {
-    pub(crate) fn new() -> Self {
-        Self { actions: vec![] }
+    pub(crate) fn new(env: Option<HashMap<String, String>>) -> Self {
+        Self {
+            env,
+            actions: vec![],
+        }
     }
 
     pub(crate) fn exec(
@@ -39,6 +44,14 @@ impl Plan {
     }
 
     pub(crate) fn explain(self) {
+        if let Some(env) = self.env {
+            println!("{GREEN}ENV:{RESET}");
+            for (key, val) in env {
+                println!("{YELLOW}{key}={val}{RESET}");
+            }
+            println!();
+        }
+
         for script in self.actions {
             script.explain();
             println!();
@@ -48,7 +61,7 @@ impl Plan {
     pub(crate) fn run(self) -> miette::Result<()> {
         for script in self.actions {
             println!("::group::{}", script.header());
-            let result = script.run();
+            let result = script.run(self.env.as_ref());
             println!("::endgroup::");
             if result.is_err() {
                 return result;
@@ -96,12 +109,12 @@ impl Action {
         }
     }
 
-    fn run(self) -> miette::Result<()> {
+    fn run(self, env: Option<&HashMap<String, String>>) -> miette::Result<()> {
         self.explain();
 
         match self {
             Self::ChangeWorkingDir { path } => cwd(path),
-            Self::Script { exe, args } => spawn_and_forward_stdout_and_stderr(exe, args),
+            Self::Script { exe, args } => spawn_and_forward_stdout_and_stderr(exe, args, env),
             Self::WriteFile { path, contents } => write_file(path, contents),
         }
     }
@@ -115,13 +128,23 @@ fn cwd(path: String) -> miette::Result<()> {
     Ok(())
 }
 
-fn spawn_and_forward_stdout_and_stderr(exe: String, args: Vec<String>) -> miette::Result<()> {
-    let mut child = std::process::Command::new(exe.clone())
-        .args(args.clone())
-        .stdout(Stdio::piped())
-        .stderr(Stdio::piped())
-        .spawn()
-        .unwrap();
+fn spawn_and_forward_stdout_and_stderr(
+    exe: String,
+    args: Vec<String>,
+    env: Option<&HashMap<String, String>>,
+) -> miette::Result<()> {
+    let mut command = std::process::Command::new(exe.clone());
+
+    if let Some(env) = env {
+        for (key, val) in env {
+            command.env(key, val);
+        }
+    }
+    command.args(args.clone());
+    command.stdout(Stdio::piped());
+    command.stderr(Stdio::piped());
+
+    let mut child = command.spawn().unwrap();
 
     let child_stdout = child
         .stdout
