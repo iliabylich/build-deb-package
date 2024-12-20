@@ -43,6 +43,7 @@ impl Config {
         let package_name = self.name;
         let version = self.version.resolve();
         let build_dir = format!("/build/{package_name}-{version}");
+        let arch = self.debian.arch();
 
         let mut plan = Plan::new();
 
@@ -60,7 +61,7 @@ impl Config {
         plan.cwd("/build");
         plan.exec("ls", ["-l", "--color=always"]);
 
-        let filename = format!("{package_name}_{version}_amd64.deb");
+        let filename = format!("{package_name}_{version}_{arch}.deb");
 
         let dest1 = format!("/shared/{filename}");
         plan.exec("cp", [&filename, &dest1]);

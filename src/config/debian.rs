@@ -29,6 +29,13 @@ impl Debian {
             write_rules(plan, rules);
         }
     }
+
+    pub(crate) fn arch(&self) -> String {
+        self.control
+            .as_ref()
+            .map(|c| c.arch.clone())
+            .unwrap_or_else(|| String::from("amd64"))
+    }
 }
 
 fn write_changelog(plan: &mut Plan, package_name: &str, version: &str) {
