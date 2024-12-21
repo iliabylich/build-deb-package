@@ -39,7 +39,7 @@ get_latest_remote_tag() {
         --jq ".[] | .name " | sort | tail -n1
 }
 
-for dir in . cosmic; do
+for dir in . hypr cosmic; do
     for config in $dir/*.toml; do
         if [[ "$config" == "./Cargo.toml" ]]; then
             continue

@@ -5,13 +5,13 @@ clean:
     rm -f *.deb
     rm -rf deb-latest/*.deb
 
-full-hyprland:
-    @just build hyprutils
-    @just build hyprwayland-scanner
-    @just build hyprgraphics
-    @just build aquamarine
-    @just build hyprland
-    @just build hyprlock
+hypr:
+    @just build hypr/hyprutils
+    @just build hypr/hyprwayland-scanner
+    @just build hypr/hyprgraphics
+    @just build hypr/aquamarine
+    @just build hypr/hyprland
+    @just build hypr/hyprlock
 
 cosmic:
     @just build cosmic/pop-icon-theme
