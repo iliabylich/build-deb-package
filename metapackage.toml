@@ -33,6 +33,7 @@ dependencies = [
     "file-roller",
     "obfuscate",
     "zenity",
+    "kitty",
 
     # Dev tools
     "build-essential",
@@ -49,7 +50,9 @@ dependencies = [
     "pkg-config",
     "make",
     "git",
+    "gitk",
     "llvm",
+    "clang",
     "lld",
 
     # CLI
@@ -82,6 +85,7 @@ dependencies = [
     "libgtk4-layer-shell-dev",
     "libadwaita-1-dev",
     "libvte-2.91-gtk4-dev",
+    "libpipewire-0.3-dev",
     "blueprint-compiler",
 
     # Debian
