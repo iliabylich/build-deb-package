@@ -21,42 +21,55 @@ info() {
     color "\033[0;33m" "$1"
 }
 
-get_latest_remote_tag() {
+get_latest_remote_release() {
     gh release view \
         -R "$git_url" \
         --json "tagName" \
         --jq ".tagName"
 }
 
-for config in *.toml; do
-    if [[ "$config" == "Cargo.toml" ]]; then
-        continue
-    fi
+get_latest_remote_tag() {
+    local owner_repo="${git_url#https://github.com/}"
+    local owner_repo="${owner_repo%.git}"
 
-    echo
+    gh api \
+        -H "Accept: application/vnd.github+json" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        /repos/$owner_repo/tags \
+        --jq ".[] | .name " | sort | tail -n1
+}
 
-    git_url="$(CONFIG_PATH=$config $EXE print-git-url)"
-    git_tag_or_branch="$(CONFIG_PATH=$config $EXE print-git-tag-or-branch)"
+for dir in . cosmic; do
+    for config in $dir/*.toml; do
+        if [[ "$config" == "./Cargo.toml" ]]; then
+            continue
+        fi
 
-    if [[ "$git_url" == "none" ]]; then
-        info "skipping, no git url"
-        continue
-    fi
+        echo
 
-    if [[ "$git_tag_or_branch" == "master" || "$git_tag_or_branch" == "main" ]]; then
-        info "skipping, not a tag ($git_tag_or_branch branch)"
-        continue
-    fi
+        git_url="$(CONFIG_PATH=$config $EXE print-git-url)"
+        git_tag_or_branch="$(CONFIG_PATH=$config $EXE print-git-tag-or-branch)"
 
-    local_tag="$git_tag_or_branch"
+        if [[ "$git_url" == "none" ]]; then
+            info "skipping, no git url"
+            continue
+        fi
 
-    info "Github: $git_url"
-    latest_remote_tag=$(get_latest_remote_tag)
-    info "Latest remote tag: $latest_remote_tag"
+        if [[ "$git_tag_or_branch" == "master" || "$git_tag_or_branch" == "main" ]]; then
+            info "skipping, not a tag ($git_tag_or_branch branch)"
+            continue
+        fi
 
-    if [[ "$latest_remote_tag" == "$local_tag" ]]; then
-        ok "NO UPDATES"
-    else
-        err "UPDATE AVAILABLE $local_tag -> $latest_remote_tag"
-    fi
+        local_tag="$git_tag_or_branch"
+
+        info "Github: $git_url"
+        latest_remote_tag=$(get_latest_remote_release || get_latest_remote_tag)
+        info "Latest remote tag: $latest_remote_tag"
+
+        if [[ "$latest_remote_tag" == "$local_tag" ]]; then
+            ok "NO UPDATES"
+        else
+            err "UPDATE AVAILABLE $local_tag -> $latest_remote_tag"
+        fi
+    done
 done
