@@ -87,7 +87,8 @@ dependencies = [
     "libadwaita-1-dev",
     "libvte-2.91-gtk4-dev",
     "libpipewire-0.3-dev",
-    "blueprint-compiler",
+    "libdbus-1-dev",
+    "libssl-dev",
 
     # Debian
     "apt-listbugs",
