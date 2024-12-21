@@ -1,0 +1,33 @@
+version = { specific = "0.1.0" }
+dependencies = [
+    "/shared/deb-latest/hyprutils.deb",
+    "/shared/deb-latest/hyprwayland-scanner.deb",
+    "libwayland-dev",
+    "wayland-protocols",
+    "hyprland-protocols",
+    "libpugixml-dev",
+]
+arch = "amd64"
+
+[source.git-clone]
+url = "https://github.com/hyprwm/hyprsunset.git"
+branch_or_tag = "v0.1.0"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "An application to enable a blue-light filter on Hyprland"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+override_dh_auto_configure = ["echo skip"]
+override_dh_auto_build = [
+    "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build",
+    "cmake --build ./build --config Release --target all -j`nproc`",
+]
+override_dh_auto_install = [
+    "cmake --install build --prefix debian/hyprsunset/usr",
+]
+override_dh_auto_test = ["echo skip"]

@@ -7,11 +7,13 @@ clean:
 
 hypr:
     @just build hypr/hyprutils
+    @just build hypr/hyprland-qtutils
     @just build hypr/hyprwayland-scanner
     @just build hypr/hyprgraphics
     @just build hypr/aquamarine
     @just build hypr/hyprland
     @just build hypr/hyprlock
+    @just build hypr/hyprsunset
 
 cosmic:
     @just build cosmic/pop-icon-theme
