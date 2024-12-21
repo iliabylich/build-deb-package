@@ -32,7 +32,17 @@ compat = { version = 10 }
 
 [debian.control]
 description = "Hyprland QT/qml utility apps"
-dependencies = ["${shlibs:Depends}"]
+dependencies = [
+    "${shlibs:Depends}",
+    "qml6-module-qtcore",
+    "qml6-module-qtqml-workerscript",
+    "qml6-module-qtqml-models",
+    "qml6-module-qtquick",
+    "qml6-module-qtquick-controls",
+    "qml6-module-qtquick-layouts",
+    "qml6-module-qtquick-templates",
+    "qml6-module-qtquick-window",
+]
 
 [debian.rules]
 override_dh_auto_configure = ["echo skip"]
