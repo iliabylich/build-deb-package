@@ -17,6 +17,8 @@ hypr:
 
 cosmic:
     @just build cosmic/pop-icon-theme
+    @just build cosmic/pop-launcher
+
     @just build cosmic/cosmic-applets
     @just build cosmic/cosmic-app-library
     @just build cosmic/cosmic-bg
@@ -25,6 +27,21 @@ cosmic:
     @just build cosmic/cosmic-files
     @just build cosmic/cosmic-greeter
     @just build cosmic/cosmic-icons
+    @just build cosmic/cosmic-idle
+    @just build cosmic/cosmic-launcher
+    @just build cosmic/cosmic-notifications
+    @just build cosmic/cosmic-osd
+    @just build cosmic/cosmic-panel
+    @just build cosmic/cosmic-randr
+    @just build cosmic/cosmic-screenshot
+    @just build cosmic/cosmic-session
+    @just build cosmic/cosmic-settings
+    @just build cosmic/cosmic-settings-daemon
+    @just build cosmic/cosmic-store
+    @just build cosmic/cosmic-term
+    @just build cosmic/cosmic-wallpapers
+    @just build cosmic/cosmic-workspaces
+    @just build cosmic/xdg-desktop-portal-cosmic
 
 metapackage:
     @just build metapackage
