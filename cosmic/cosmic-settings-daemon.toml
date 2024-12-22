@@ -10,6 +10,7 @@ branch_or_tag = "epoch-1.0.0-alpha.4"
 post_clone_scripts = [
     "sed -i s/0.1.0/1.0.0-alpha4/g debian/changelog",
     "sed -i s/vendored/release/g debian/rules",
+    "sed -i s/adw-gtk3/bash/g debian/control",
 ]
 
 [debian]

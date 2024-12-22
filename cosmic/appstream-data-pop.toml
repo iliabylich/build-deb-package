@@ -1,0 +1,14 @@
+version = { specific = "0.0.3" }
+dependencies = []
+arch = "all"
+additionally_produced_packages = [
+    "appstream-data-pop-icons",
+    "appstream-data-pop-icons-hidpi",
+]
+
+[source.git-clone]
+url = "https://github.com/pop-os/appstream-data.git"
+branch_or_tag = "master"
+
+[debian]
+changelog = false

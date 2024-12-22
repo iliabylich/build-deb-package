@@ -1,0 +1,10 @@
+version = { specific = "1.0.3" }
+dependencies = []
+arch = "all"
+
+[source.git-clone]
+url = "https://github.com/pop-os/fonts.git"
+branch_or_tag = "master"
+
+[debian]
+changelog = false

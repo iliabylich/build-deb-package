@@ -1,0 +1,13 @@
+version = { specific = "5.5.1" }
+dependencies = ["just", "libglib2.0-dev", "meson", "sassc"]
+arch = "all"
+env = { VENDOR = "0" }
+path = ["/root/.cargo/bin"]
+additionally_produced_packages = ["pop-sound-theme", "pop-gnome-shell-theme"]
+
+[source.git-clone]
+url = "https://github.com/pop-os/gtk-theme.git"
+branch_or_tag = "v5.5.1"
+
+[debian]
+changelog = false

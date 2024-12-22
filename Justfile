@@ -18,6 +18,9 @@ hypr:
 cosmic:
     @just build cosmic/pop-icon-theme
     @just build cosmic/pop-launcher
+    @just build cosmic/pop-gtk-theme
+    @just build cosmic/pop-fonts
+    @just build cosmic/appstream-data-pop
 
     @just build cosmic/cosmic-applets
     @just build cosmic/cosmic-app-library
