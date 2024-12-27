@@ -61,6 +61,9 @@ fx:
 syshud:
     @just build syshud
 
+ghostty:
+    @just build ghostty
+
 build package:
     sudo docker run --rm -e CONFIG_PATH=/shared/{{package}}.toml -t -v $PWD:/shared ghcr.io/iliabylich/debian-unstable-builder:latest
 
