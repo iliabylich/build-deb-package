@@ -23,11 +23,9 @@ dependencies = ["${shlibs:Depends}"]
 [debian.rules]
 "%" = ["dh $@"]
 override_dh_auto_configure = ["echo skip"]
-override_dh_auto_build = [
-    "zig version",
-    "zig build -Doptimize=ReleaseFast -fsys=fontconfig",
-]
+override_dh_auto_build = ["echo skip"]
 override_dh_auto_install = [
-    "install -Dm0755 zig-out/bin/ghostty debian/ghostty/usr/bin/ghostty",
+    "zig version",
+    "zig build -p debian/ghostty/usr -Doptimize=ReleaseFast -fsys=fontconfig",
 ]
 override_dh_auto_test = ["echo skip"]
