@@ -10,6 +10,7 @@ dependencies = [
     "clang-19",
 ]
 arch = "amd64"
+path = ["/root/.cargo/bin"]
 
 [source.git-clone]
 url = "https://github.com/iliabylich/layer-shell.git"
@@ -26,8 +27,10 @@ dependencies = ["${shlibs:Depends}"]
 [debian.rules]
 "%" = ["dh $@"]
 override_dh_auto_build = [
-    "CARGO_TERM_COLOR=always /root/.cargo/bin/cargo build --release",
+    "CARGO_TERM_COLOR=always cargo build --release",
+    "BUILD_TYPE=release make main",
 ]
 override_dh_auto_install = [
-    "install -Dm0755 target/release/layer-shell-ui debian/layer-shell/usr/bin/layer-shell",
+    "install -Dm0644 target/release/liblayer_shell_io.so debian/layer-shell/lib/x86_64-linux-gnu/liblayer_shell_io.so",
+    "install -Dm0755 main debian/layer-shell/usr/bin/layer-shell",
 ]
