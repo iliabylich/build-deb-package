@@ -35,6 +35,9 @@ dependencies = [
     "firefox",
     "ghostty",
 
+    # fonts
+    "fonts-inter-variable",
+
     # Dev tools
     "build-essential",
     "cmake",
