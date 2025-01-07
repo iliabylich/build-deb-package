@@ -39,7 +39,7 @@ impl Debian {
 
 fn write_changelog(plan: &mut Plan, package_name: &str, version: &str) {
     plan.write_file(
-        format!("debian/changelog"),
+        "debian/changelog",
         format!(
             "{package_name} ({version}) unstable; urgency=low
 
@@ -58,7 +58,7 @@ pub(crate) struct Compat {
 
 impl Compat {
     fn write(self, plan: &mut Plan) {
-        plan.write_file(format!("debian/compat"), format!("{}", self.version));
+        plan.write_file("debian/compat", format!("{}", self.version));
     }
 }
 
@@ -77,7 +77,7 @@ impl Control {
         let dependencies = dependencies.unwrap_or_default().join(", ");
 
         plan.write_file(
-            format!("debian/control"),
+            "debian/control",
             format!(
                 "Source: {package_name}
 Section: utils
@@ -118,7 +118,7 @@ fn write_rules(plan: &mut Plan, mut map: HashMap<String, Vec<String>>) {
     }
 
     plan.write_file(
-        format!("debian/rules"),
+        "debian/rules",
         format!(
             "#!/usr/bin/make -f
 export DH_VERBOSE = 1
@@ -128,5 +128,5 @@ export DH_VERBOSE = 1
         ),
     );
 
-    plan.exec("chmod", ["+x", &format!("debian/rules")]);
+    plan.exec("chmod", ["+x", "debian/rules"]);
 }

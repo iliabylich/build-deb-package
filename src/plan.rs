@@ -73,9 +73,7 @@ impl Plan {
             println!("::group::{}", script.header());
             let result = script.run(&self.env, &self.path);
             println!("::endgroup::");
-            if result.is_err() {
-                return result;
-            }
+            result?;
         }
         Ok(())
     }
