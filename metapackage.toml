@@ -15,7 +15,7 @@ dependencies = [
     "nautilus",
     "gnome-system-monitor",
     "gnome-terminal",
-    "gdm3",
+    "tuigreet",
 
     # UI apps
     "flatpak",
