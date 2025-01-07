@@ -12,10 +12,8 @@ compat = { version = 10 }
 description = "Meta-package that depends on all packages that I use"
 dependencies = [
     # Gnome
-    "gnome-session",
     "nautilus",
     "gnome-system-monitor",
-    "gnome-icon-theme",
     "gnome-terminal",
     "gdm3",
 
@@ -35,6 +33,7 @@ dependencies = [
     "zenity",
     "kitty",
     "firefox",
+    "ghostty",
 
     # Dev tools
     "build-essential",
@@ -110,6 +109,8 @@ dependencies = [
     "syshud",
     "hyprsunset",
     "hyprland-qtutils",
+    "hyprsysteminfo",
+    "hyprpolkitagent",
 ]
 
 [debian.rules]
