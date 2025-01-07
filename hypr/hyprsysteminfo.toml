@@ -1,0 +1,37 @@
+version = { specific = "0.1.2" }
+dependencies = [
+    "/shared/deb-latest/hyprutils.deb",
+
+    "qt6-base-dev",
+    "qt6-declarative-dev",
+    "qt6-declarative-private-dev",
+
+    "qt6-wayland-dev",
+    "qt6-wayland-private-dev",
+
+    "qml6-module-qtquick",
+]
+arch = "amd64"
+
+[source.git-clone]
+url = "https://github.com/hyprwm/hyprsysteminfo.git"
+branch_or_tag = "v0.1.2"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "A tiny qt6/qml application to display information about the running system"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+override_dh_auto_configure = ["echo skip"]
+override_dh_auto_build = [
+    "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build",
+    "cmake --build ./build --config Release --target all -j`nproc`",
+]
+override_dh_auto_install = [
+    "cmake --install build --prefix debian/hyprsysteminfo/usr",
+]
+override_dh_auto_test = ["echo skip"]

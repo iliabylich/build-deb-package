@@ -14,6 +14,7 @@ hypr:
     @just build hypr/hyprland
     @just build hypr/hyprlock
     @just build hypr/hyprsunset
+    @just build hypr/hyprsysteminfo
 
 cosmic:
     @just build cosmic/pop-icon-theme
@@ -78,3 +79,7 @@ deploy package:
 
 docker-sh:
     sudo docker run --rm -it -v $PWD:/shared --entrypoint bash ghcr.io/iliabylich/debian-unstable-builder:latest
+
+unpack filepath:
+    mkdir -p tmp
+    dpkg-deb -R {{filepath}} tmp
