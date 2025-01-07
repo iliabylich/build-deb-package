@@ -15,6 +15,7 @@ hypr:
     @just build hypr/hyprlock
     @just build hypr/hyprsunset
     @just build hypr/hyprsysteminfo
+    @just build hypr/hyprpolkitagent
 
 cosmic:
     @just build cosmic/pop-icon-theme

@@ -1,0 +1,35 @@
+version = { specific = "0.1.1" }
+dependencies = [
+    "/shared/deb-latest/hyprutils.deb",
+
+    "libpolkit-agent-1-dev",
+    "libpolkit-qt6-1-dev",
+
+    "qt6-base-dev",
+    "qt6-declarative-dev",
+    "qt6-declarative-private-dev",
+]
+arch = "amd64"
+
+[source.git-clone]
+url = "https://github.com/hyprwm/hyprpolkitagent.git"
+branch_or_tag = "v0.1.1"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "A polkit authentication agent written in QT/QML"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+override_dh_auto_configure = ["echo skip"]
+override_dh_auto_build = [
+    "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build",
+    "cmake --build ./build --config Release --target all -j`nproc`",
+]
+override_dh_auto_install = [
+    "cmake --install build --prefix debian/hyprpolkitagent/usr",
+]
+override_dh_auto_test = ["echo skip"]
