@@ -80,6 +80,7 @@ dependencies = [
     "wget",
     "curl",
     "fx",
+    "starship",
 
     # Libs
     "libjemalloc2",
