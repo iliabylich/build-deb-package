@@ -3,7 +3,7 @@ name: release
 on:
   workflow_dispatch:
     inputs:
-      packageName:
+      justCommand:
         description: Just command to run
         required: true
       runName:
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: extractions/setup-just@v2
 
-      - run: just ${{ github.event.inputs.packageName }}
+      - run: just ${{ github.event.inputs.justCommand }}
 
       - run: ls -l
 
@@ -30,6 +30,6 @@ jobs:
           allowUpdates: true
           artifactErrorsFailBuild: true
           removeArtifacts: true
-          tag: ${{ github.event.inputs.packageName }}
+          tag: ${{ github.event.inputs.justCommand }}
           artifacts: "*.deb"
           token: ${{ secrets.GITHUB_TOKEN }}

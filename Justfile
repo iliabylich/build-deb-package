@@ -6,16 +6,16 @@ clean:
     rm -rf deb-latest/*.deb
 
 hypr:
-    @just build hypr/hyprutils
-    @just build hypr/hyprland-qtutils
-    @just build hypr/hyprwayland-scanner
-    @just build hypr/hyprgraphics
-    @just build hypr/aquamarine
-    @just build hypr/hyprland
-    @just build hypr/hyprlock
-    @just build hypr/hyprsunset
-    @just build hypr/hyprsysteminfo
-    @just build hypr/hyprpolkitagent
+    @just build hypr/hyprutils,\
+                hypr/hyprland-qtutils,\
+                hypr/hyprwayland-scanner,\
+                hypr/hyprgraphics,\
+                hypr/aquamarine,\
+                hypr/hyprland,\
+                hypr/hyprlock,\
+                hypr/hyprsunset,\
+                hypr/hyprsysteminfo,\
+                hypr/hyprpolkitagent
 
 cosmic:
     @just build cosmic/pop-icon-theme
@@ -66,21 +66,36 @@ syshud:
 ghostty:
     @just build ghostty
 
-build package:
-    sudo docker run --rm -e CONFIG_PATH=/shared/{{package}}.toml -t -v $PWD:/shared ghcr.io/iliabylich/debian-unstable-builder:latest
+pwd := `pwd`
+base_configs_dir := "/shared"
+docker_image := "ghcr.io/iliabylich/debian-unstable-builder:latest"
+docker_entrypoint := "/bin/build-deb-package"
 
-parse package:
-    sudo docker run --rm -e CONFIG_PATH=/shared/{{package}}.toml -it -v $PWD:/shared --entrypoint /bin/build-deb-package ghcr.io/iliabylich/debian-unstable-builder:latest parse
+run-in-docker command packages:
+    sudo docker run --rm \
+        -e BASE_CONFIGS_DIR="{{ base_configs_dir }}" \
+        -e PACKAGES="{{ packages }}" \
+        -it \
+        -v "{{pwd}}:/shared" \
+        --entrypoint {{docker_entrypoint}} \
+        {{docker_image}} \
+        {{command}}
 
-explain package:
-    sudo docker run --rm -e CONFIG_PATH=/shared/{{package}}.toml -it -v $PWD:/shared --entrypoint /bin/build-deb-package ghcr.io/iliabylich/debian-unstable-builder:latest explain
+build packages:
+    @just run-in-docker run {{packages}}
+
+parse packages:
+    @just run-in-docker parse {{packages}}
+
+explain packages:
+    @just run-in-docker explain {{packages}}
 
 deploy package:
     ./remote/deploy.sh {{package}}
 
 docker-sh:
-    sudo docker run --rm -it -v $PWD:/shared --entrypoint bash ghcr.io/iliabylich/debian-unstable-builder:latest
+    sudo docker run --rm -it -v $PWD:/shared --entrypoint bash {{docker_image}}
 
-unpack filepath:
+unpack debfile:
     mkdir -p tmp
-    dpkg-deb -R {{filepath}} tmp
+    dpkg-deb -R {{debfile}} tmp

@@ -8,7 +8,7 @@ EXE=target/debug/build-deb-package
 color() {
     local color="$1"
     local line="$2"
-    echo -e "[$config] $color$line\033[0m"
+    echo -e "[$package] $color$line\033[0m"
 }
 
 err() {
@@ -40,15 +40,16 @@ get_latest_remote_tag() {
 }
 
 for dir in . hypr cosmic; do
-    for config in $dir/*.toml; do
-        if [[ "$config" == "./Cargo.toml" ]]; then
+    for config_path in $dir/*.toml; do
+        if [[ "$config_path" == "./Cargo.toml" ]]; then
             continue
         fi
+        package="${config_path%.*}"
 
         echo
 
-        git_url="$(CONFIG_PATH=$config $EXE print-git-url)"
-        git_tag_or_branch="$(CONFIG_PATH=$config $EXE print-git-tag-or-branch)"
+        git_url="$(BASE_CONFIGS_DIR="$PWD" PACKAGES=$package $EXE print-git-url)"
+        git_tag_or_branch="$(BASE_CONFIGS_DIR="$PWD" PACKAGES=$package $EXE print-git-tag-or-branch)"
 
         if [[ "$git_url" == "none" ]]; then
             info "skipping, no git url"
