@@ -52,7 +52,7 @@ impl Config {
 
         let mut plan = Plan::new(self.env.unwrap_or_default(), self.path.unwrap_or_default());
 
-        plan.exec("mkdir", ["/build"]);
+        plan.exec("mkdir", ["-p", "/build"]);
         self.source.fetch(&mut plan, &build_dir);
         plan.cwd(&build_dir);
 
@@ -79,13 +79,6 @@ impl Config {
         };
 
         copy_deb(&mut plan, &package_name);
-
-        // let dest1 = format!("/shared/{filename}");
-        // plan.exec("cp", [&filename, &dest1]);
-
-        // plan.exec("mkdir", ["-p", "/shared/deb-latest"]);
-        // let dest2 = format!("/shared/deb-latest/{package_name}.deb");
-        // plan.exec("cp", [&filename, &dest2]);
 
         if let Some(additionally_produced_packages) = self.additionally_produced_packages {
             for package_name in additionally_produced_packages {
