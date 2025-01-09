@@ -81,6 +81,7 @@ dependencies = [
     "curl",
     "fx",
     "starship",
+    "du-dust",
 
     # Libs
     "libjemalloc2",

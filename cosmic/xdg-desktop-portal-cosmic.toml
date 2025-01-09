@@ -1,4 +1,4 @@
-version = { specific = "1.0.0-alpha4" }
+version = { specific = "1.0.0-alpha5" }
 dependencies = [
     "just",
     "libclang-dev",
@@ -15,9 +15,9 @@ path = ["/root/.cargo/bin"]
 
 [source.git-clone]
 url = "https://github.com/pop-os/xdg-desktop-portal-cosmic.git"
-branch_or_tag = "epoch-1.0.0-alpha.4"
+branch_or_tag = "epoch-1.0.0-alpha.5"
 post_clone_scripts = [
-    "sed -i s/0.1.0pop1/1.0.0-alpha4/g debian/changelog",
+    "sed -i s/0.1.0pop1/1.0.0-alpha5/g debian/changelog",
     "sed -i s/vendored/release/g debian/rules",
 ]
 

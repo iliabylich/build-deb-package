@@ -18,35 +18,34 @@ hypr:
                 hypr/hyprpolkitagent
 
 cosmic:
-    @just build cosmic/pop-icon-theme
-    @just build cosmic/pop-launcher
-    @just build cosmic/pop-gtk-theme
-    @just build cosmic/pop-fonts
-    @just build cosmic/appstream-data-pop
-
-    @just build cosmic/cosmic-applets
-    @just build cosmic/cosmic-app-library
-    @just build cosmic/cosmic-bg
-    @just build cosmic/cosmic-comp
-    @just build cosmic/cosmic-edit
-    @just build cosmic/cosmic-files
-    @just build cosmic/cosmic-greeter
-    @just build cosmic/cosmic-icons
-    @just build cosmic/cosmic-idle
-    @just build cosmic/cosmic-launcher
-    @just build cosmic/cosmic-notifications
-    @just build cosmic/cosmic-osd
-    @just build cosmic/cosmic-panel
-    @just build cosmic/cosmic-randr
-    @just build cosmic/cosmic-screenshot
-    @just build cosmic/cosmic-session
-    @just build cosmic/cosmic-settings
-    @just build cosmic/cosmic-settings-daemon
-    @just build cosmic/cosmic-store
-    @just build cosmic/cosmic-term
-    @just build cosmic/cosmic-wallpapers
-    @just build cosmic/cosmic-workspaces
-    @just build cosmic/xdg-desktop-portal-cosmic
+    @just build cosmic/pop-icon-theme,\
+                cosmic/pop-launcher,\
+                cosmic/pop-gtk-theme,\
+                cosmic/pop-fonts,\
+                cosmic/appstream-data-pop,\
+                cosmic/cosmic-applets,\
+                cosmic/cosmic-app-library,\
+                cosmic/cosmic-bg,\
+                cosmic/cosmic-comp,\
+                cosmic/cosmic-edit,\
+                cosmic/cosmic-files,\
+                cosmic/cosmic-greeter,\
+                cosmic/cosmic-icons,\
+                cosmic/cosmic-idle,\
+                cosmic/cosmic-launcher,\
+                cosmic/cosmic-notifications,\
+                cosmic/cosmic-osd,\
+                cosmic/cosmic-panel,\
+                cosmic/cosmic-randr,\
+                cosmic/cosmic-screenshot,\
+                cosmic/cosmic-session,\
+                cosmic/cosmic-settings,\
+                cosmic/cosmic-settings-daemon,\
+                cosmic/cosmic-store,\
+                cosmic/cosmic-term,\
+                cosmic/cosmic-wallpapers,\
+                cosmic/cosmic-workspaces,\
+                cosmic/xdg-desktop-portal-cosmic
 
 metapackage:
     @just build metapackage
@@ -75,7 +74,7 @@ run-in-docker command packages:
     sudo docker run --rm \
         -e BASE_CONFIGS_DIR="{{ base_configs_dir }}" \
         -e PACKAGES="{{ packages }}" \
-        -it \
+        -t \
         -v "{{pwd}}:/shared" \
         --entrypoint {{docker_entrypoint}} \
         {{docker_image}} \
