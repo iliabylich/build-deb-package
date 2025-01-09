@@ -18,10 +18,19 @@ pub(crate) fn parse() -> Args {
 
 impl Args {
     pub(crate) fn run(self) -> miette::Result<()> {
-        let path = std::env::var("CONFIG_PATH")
+        let paths = std::env::var("CONFIG_PATH")
             .into_diagnostic()
             .context("CONFIG_PATH is not set")?;
-        let config = Config::from_path(&path)?;
+
+        for path in paths.split(",") {
+            self.run_one(path)?;
+        }
+
+        Ok(())
+    }
+
+    fn run_one(&self, path: &str) -> miette::Result<()> {
+        let config = Config::from_path(path)?;
 
         match self {
             Args::Parse => {
