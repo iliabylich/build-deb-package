@@ -18,12 +18,17 @@ pub(crate) fn parse() -> Args {
 
 impl Args {
     pub(crate) fn run(self) -> miette::Result<()> {
-        let paths = std::env::var("CONFIG_PATH")
+        let base_configs_dir = std::env::var("BASE_CONFIGS_DIR")
             .into_diagnostic()
-            .context("CONFIG_PATH is not set")?;
+            .context("BASE_CONFIGS_DIR is not set")?;
 
-        for path in paths.split(",") {
-            self.run_one(path)?;
+        let configs = std::env::var("PACKAGES")
+            .into_diagnostic()
+            .context("PACKAGES is not set")?;
+
+        for config in configs.split(",") {
+            let path = format!("{base_configs_dir}/{config}.toml");
+            self.run_one(&path)?;
         }
 
         Ok(())
