@@ -65,6 +65,9 @@ syshud:
 ghostty:
     @just build ghostty
 
+spot:
+    @just build spot
+
 pwd := `pwd`
 base_configs_dir := "/shared"
 docker_image := "ghcr.io/iliabylich/debian-unstable-builder:latest"
