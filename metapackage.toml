@@ -34,6 +34,7 @@ dependencies = [
     # "zenity",
     "firefox",
     "ghostty",
+    "spot",
 
     # fonts
     "fonts-inter-variable",
@@ -57,6 +58,7 @@ dependencies = [
     "llvm",
     "clang",
     "lld",
+    "clangd",
 
     # CLI
     "hugo",
