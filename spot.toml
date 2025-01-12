@@ -1,0 +1,42 @@
+version = { specific = "0.5.0" }
+dependencies = [
+    "libgtk-4-dev",
+    "libadwaita-1-dev",
+    "desktop-file-utils",
+    "libssl-dev",
+    "libasound2-dev",
+    "libpulse-dev",
+    "libgstreamer1.0-dev",
+    "libgstreamer-plugins-base1.0-dev",
+    "blueprint-compiler",
+    "git",
+    "meson",
+    "ninja-build",
+]
+arch = "amd64"
+path = ["/root/.cargo/bin"]
+
+[source.git-clone]
+url = "https://github.com/xou816/spot.git"
+branch_or_tag = "0.5.0"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "Native Spotify client for the GNOME desktop"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_configure = [
+    "meson target -Dbuildtype=release -Doffline=false --prefix=/usr",
+]
+override_dh_auto_install = [
+    "DESTDIR=debian/spot ninja install -C target",
+    "mkdir -p debian/spot",
+    "rm -rf debian/spot/usr",
+    "mv target/debian/spot/usr debian/spot/usr",
+]
+override_dh_auto_test = ["echo skip"]
