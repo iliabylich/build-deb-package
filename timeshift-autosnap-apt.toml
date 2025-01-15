@@ -1,0 +1,21 @@
+version = "0-0-stamp"
+dependencies = []
+arch = "amd64"
+
+[source.git-clone]
+url = "https://github.com/wmutschl/timeshift-autosnap-apt.git"
+branch_or_tag = "main"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "Timeshift auto-snapshot script for Ubuntu and Debian based systems which creates snapshots of your system with timeshift before a package install, remove or upgrade using DPkg::Pre-Invoke hook in apt. Fork of timeshift-autosnap from AUR."
+dependencies = ["timeshift"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_install = [
+    "make install DESTDIR=\"debian/timeshift-autosnap-apt\" LIB_DIR=\"debian/timeshift-autosnap-apt\"",
+]

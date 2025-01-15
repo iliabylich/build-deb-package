@@ -68,6 +68,9 @@ ghostty:
 spot:
     @just build spot
 
+timeshift-autosnap-apt:
+    @just build timeshift-autosnap-apt
+
 pwd := `pwd`
 base_configs_dir := "/shared"
 docker_image := "ghcr.io/iliabylich/debian-unstable-builder:latest"
