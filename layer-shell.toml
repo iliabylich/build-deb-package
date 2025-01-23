@@ -22,7 +22,7 @@ compat = { version = 10 }
 
 [debian.control]
 description = "A custom layer shell"
-dependencies = ["${shlibs:Depends}"]
+dependencies = ["${shlibs:Depends}", "fonts-inter-variable"]
 
 [debian.rules]
 "%" = ["dh $@"]
