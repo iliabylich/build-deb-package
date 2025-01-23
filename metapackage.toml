@@ -36,9 +36,6 @@ dependencies = [
     "ghostty",
     "spot",
 
-    # fonts
-    "fonts-inter-variable",
-
     # Dev tools
     "build-essential",
     "cmake",
@@ -84,7 +81,6 @@ dependencies = [
     "fx",
     "starship",
     "du-dust",
-    "lsd",
 
     # Libs
     "libjemalloc2",
