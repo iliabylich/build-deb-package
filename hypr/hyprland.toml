@@ -4,8 +4,8 @@ dependencies = [
     "libgles2-mesa-dev",
 
     "/shared/deb-latest/aquamarine.deb",
-    "libhyprlang-dev",
-    "libhyprcursor-dev",
+    "/shared/deb-latest/hyprlang.deb",
+    "/shared/deb-latest/hyprcursor.deb",
     "/shared/deb-latest/hyprutils.deb",
     "/shared/deb-latest/hyprgraphics.deb",
     "/shared/deb-latest/hyprwayland-scanner.deb",

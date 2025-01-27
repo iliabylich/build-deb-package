@@ -7,6 +7,8 @@ clean:
 
 hypr:
     @just build hypr/hyprutils,\
+                hypr/hyprlang,\
+                hypr/hyprcursor,\
                 hypr/hyprland-qtutils,\
                 hypr/hyprwayland-scanner,\
                 hypr/hyprgraphics,\
@@ -15,7 +17,8 @@ hypr:
                 hypr/hyprlock,\
                 hypr/hyprsunset,\
                 hypr/hyprsysteminfo,\
-                hypr/hyprpolkitagent
+                hypr/hyprpolkitagent,\
+                hypr/hyprland-qt-support
 
 cosmic:
     @just build cosmic/pop-icon-theme,\

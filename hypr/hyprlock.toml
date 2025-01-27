@@ -1,13 +1,13 @@
 version = { specific = "0.6.2" }
 dependencies = [
     "/shared/deb-latest/hyprutils.deb",
+    "/shared/deb-latest/hyprlang.deb",
     "/shared/deb-latest/hyprgraphics.deb",
     "/shared/deb-latest/hyprwayland-scanner.deb",
     "libwayland-dev",
     "wayland-protocols",
     "mesa-common-dev",
     "libgl1-mesa-dev",
-    "libhyprlang-dev",
     "libxkbcommon-dev",
     "libjpeg-dev",
     "libwebp-dev",

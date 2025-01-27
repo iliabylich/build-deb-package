@@ -1,0 +1,35 @@
+version = { specific = "0.1.0" }
+dependencies = [
+    "/shared/deb-latest/hyprutils.deb",
+    "/shared/deb-latest/hyprlang.deb",
+
+    "qt6-base-dev",
+    "qt6-declarative-dev",
+    "qt6-declarative-private-dev",
+]
+arch = "amd64"
+
+[source.git-clone]
+url = "https://github.com/hyprwm/hyprland-qt-support.git"
+branch_or_tag = "v0.1.0"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "A qml style provider for hypr* qt apps"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+override_dh_auto_configure = ["echo skip"]
+override_dh_auto_build = [
+    "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -DINSTALL_QML_PREFIX=/lib/qt6/qml -S . -B ./build",
+    "cmake --build ./build --config Release --target all -j`nproc`",
+]
+override_dh_auto_install = [
+    "cmake --install build --prefix debian/hyprland-qt-support/usr",
+    "mkdir -p debian/hyprland-qt-support/usr/lib/x86_64-linux-gnu/qt6/qml/org",
+    "cp -r /lib/qt6/qml/org/hyprland debian/hyprland-qt-support/usr/lib/x86_64-linux-gnu/qt6/qml/org/hyprland",
+]
+override_dh_auto_test = ["echo skip"]
