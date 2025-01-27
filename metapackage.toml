@@ -115,6 +115,7 @@ dependencies = [
     "hyprland-qtutils",
     "hyprsysteminfo",
     "hyprpolkitagent",
+    "hyprland-qt-support",
 ]
 
 [debian.rules]
