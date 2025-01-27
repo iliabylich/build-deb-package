@@ -1,4 +1,4 @@
-version = { specific = "0.1.1" }
+version = { specific = "0.1.1-1" }
 dependencies = [
     "/shared/deb-latest/hyprutils.deb",
     "libpixman-1-dev",

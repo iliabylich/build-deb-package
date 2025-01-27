@@ -1,4 +1,4 @@
-version = { specific = "0.5.1" }
+version = { specific = "0.7.1" }
 dependencies = [
     "libgles2-mesa-dev",
 
@@ -21,7 +21,7 @@ arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/aquamarine.git"
-branch_or_tag = "v0.5.1"
+branch_or_tag = "v0.7.1"
 
 [debian]
 changelog = true

@@ -1,10 +1,10 @@
-version = { specific = "0.4.2" }
+version = { specific = "0.4.4" }
 dependencies = ["libpugixml-dev"]
 arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprwayland-scanner.git"
-branch_or_tag = "v0.4.2"
+branch_or_tag = "v0.4.4"
 
 [debian]
 changelog = true
@@ -12,7 +12,7 @@ compat = { version = 10 }
 
 [debian.control]
 description = "A Hyprland implementation of wayland-scanner, in and for C++."
-dependencies = []
+dependencies = ["${shlibs:Depends}"]
 
 [debian.rules]
 override_dh_auto_configure = ["echo skip"]

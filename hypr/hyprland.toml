@@ -1,4 +1,4 @@
-version = { specific = "0.46.2" }
+version = { specific = "0.47.0" }
 dependencies = [
     "ninja-build",
     "libgles2-mesa-dev",
@@ -37,7 +37,7 @@ arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprland.git"
-branch_or_tag = "v0.46.2"
+branch_or_tag = "v0.47.0"
 
 [debian]
 changelog = true
