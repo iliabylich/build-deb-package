@@ -82,7 +82,6 @@ dependencies = [
     "fx",
     "starship",
     "du-dust",
-    "timeshift-autosnap-apt",
 
     # Libs
     "libjemalloc2",
@@ -96,9 +95,8 @@ dependencies = [
     "libssl-dev",
 
     # Debian
-    "apt-listbugs",
     "apt-file",
-    "netselect-apt",
+    "timeshift-autosnap-apt",
 
     # Hyprland
     "hyprland",
