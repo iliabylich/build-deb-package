@@ -1,0 +1,25 @@
+version = { specific = "0.10.4" }
+dependencies = []
+arch = "amd64"
+path = ["/root/.cargo/bin"]
+
+[source.git-clone]
+url = "https://github.com/xremap/xremap.git"
+branch_or_tag = "v0.10.4"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "Key remapper for X11 and Wayland"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = [
+    "CARGO_TERM_COLOR=always cargo build --release --features hypr",
+]
+override_dh_auto_install = [
+    "install -Dm0755 target/release/xremap debian/xremap/usr/bin/xremap",
+]

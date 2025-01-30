@@ -77,6 +77,9 @@ timeshift-autosnap-apt:
 gaskpass:
     @just build gaskpass
 
+xremap:
+    @just build xremap
+
 pwd := `pwd`
 base_configs_dir := "/shared"
 docker_image := "ghcr.io/iliabylich/debian-unstable-builder:latest"
