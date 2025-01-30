@@ -1,0 +1,23 @@
+version = { specific = "1.0.0" }
+dependencies = ["libgtk-4-dev"]
+arch = "amd64"
+
+[source.git-clone]
+url = "https://github.com/iliabylich/gaskpass.git"
+branch_or_tag = "v1.0.0"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "a micro tool written in GTK4 to be used as SUDO_ASKPASS"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = ["make"]
+override_dh_auto_install = [
+    "install -Dm0755 gaskpass debian/gaskpass/usr/bin/gaskpass",
+]
+override_dh_auto_test = ["echo skip"]
