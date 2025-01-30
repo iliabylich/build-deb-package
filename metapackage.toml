@@ -83,6 +83,7 @@ dependencies = [
     "starship",
     "du-dust",
     "gaskpass",
+    "xremap",
 
     # Libs
     "libjemalloc2",
