@@ -1,10 +1,10 @@
-version = { specific = "1.0.0" }
+version = { specific = "1.0.1" }
 dependencies = ["libgtk-4-dev"]
 arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/iliabylich/gaskpass.git"
-branch_or_tag = "v1.0.0"
+branch_or_tag = "v1.0.1"
 
 [debian]
 changelog = true
@@ -19,5 +19,6 @@ dependencies = ["${shlibs:Depends}"]
 override_dh_auto_build = ["make"]
 override_dh_auto_install = [
     "install -Dm0755 gaskpass debian/gaskpass/usr/bin/gaskpass",
+    "install -Dm0755 gaskpass-sudo debian/gaskpass/usr/bin/gaskpass-sudo",
 ]
 override_dh_auto_test = ["echo skip"]
