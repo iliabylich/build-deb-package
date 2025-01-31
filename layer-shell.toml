@@ -3,10 +3,8 @@ dependencies = [
     "libgtk-4-dev",
     "libgtk4-layer-shell-dev",
     "libvte-2.91-gtk4-dev",
-    "libpipewire-0.3-dev",
     "libdbus-1-dev",
     "libssl-dev",
-    "libclang1",
     "clang",
 ]
 arch = "amd64"
