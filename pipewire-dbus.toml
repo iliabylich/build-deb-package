@@ -1,0 +1,23 @@
+version = { specific = "1.0.0" }
+dependencies = ["libpipewire-0.3-dev", "libclang1", "clang"]
+arch = "amd64"
+path = ["/root/.cargo/bin"]
+
+[source.git-clone]
+url = "https://github.com/iliabylich/pipewire-dbus.git"
+branch_or_tag = "v1.0.0"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "A daemon service that triggers Pipewire volume events over DBus"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = ["CARGO_TERM_COLOR=always cargo build --release"]
+override_dh_auto_install = [
+    "install -Dm0755 target/release/pipewire-dbus debian/pipewire-dbus/usr/bin/pipewire-dbus",
+]
