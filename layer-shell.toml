@@ -6,6 +6,8 @@ dependencies = [
     "libdbus-1-dev",
     "libssl-dev",
     "clang",
+    "meson",
+    "ninja-build",
 ]
 arch = "amd64"
 path = ["/root/.cargo/bin"]
@@ -24,11 +26,9 @@ dependencies = ["${shlibs:Depends}", "fonts-inter-variable"]
 
 [debian.rules]
 "%" = ["dh $@"]
-override_dh_auto_build = [
-    "CARGO_TERM_COLOR=always cargo build --release",
-    "BUILD_TYPE=release make main",
+override_dh_auto_configure = [
+    "cargo build --release",
+    "CC=clang meson setup builddir --buildtype=release --prefix=$$PWD/debian/layer-shell",
 ]
-override_dh_auto_install = [
-    "install -Dm0644 target/release/liblayer_shell_io.so debian/layer-shell/lib/x86_64-linux-gnu/liblayer_shell_io.so",
-    "install -Dm0755 main debian/layer-shell/usr/bin/layer-shell",
-]
+override_dh_auto_build = ["ninja -C builddir"]
+override_dh_auto_install = ["meson install -C builddir"]
