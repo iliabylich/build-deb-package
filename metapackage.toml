@@ -84,6 +84,7 @@ dependencies = [
     "du-dust",
     "gaskpass",
     "xremap",
+    "pipewire-dbus",
 
     # Libs
     "libjemalloc2",
