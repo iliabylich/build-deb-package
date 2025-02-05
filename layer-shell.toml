@@ -5,6 +5,7 @@ dependencies = [
     "libvte-2.91-gtk4-dev",
     "libdbus-1-dev",
     "libssl-dev",
+    "libgtkmm-4.0-dev",
     "clang",
     "meson",
     "ninja-build",
@@ -28,7 +29,7 @@ dependencies = ["${shlibs:Depends}", "fonts-inter-variable"]
 "%" = ["dh $@"]
 override_dh_auto_configure = [
     "cargo build --release",
-    "CC=clang meson setup builddir --buildtype=release --prefix=$$PWD/debian/layer-shell",
+    "CXX=clang++ meson setup builddir --buildtype=release --prefix=$$PWD/debian/layer-shell",
 ]
 override_dh_auto_build = ["ninja -C builddir"]
 override_dh_auto_install = ["meson install -C builddir"]
