@@ -9,6 +9,7 @@ dependencies = [
     "clang",
     "meson",
     "ninja-build",
+    "just",
 ]
 arch = "amd64"
 path = ["/root/.cargo/bin"]
@@ -27,9 +28,7 @@ dependencies = ["${shlibs:Depends}", "fonts-inter-variable"]
 
 [debian.rules]
 "%" = ["dh $@"]
-override_dh_auto_configure = [
-    "cargo build --release",
-    "CXX=clang++ meson setup builddir --buildtype=release --prefix=$$PWD/debian/layer-shell",
-]
-override_dh_auto_build = ["ninja -C builddir"]
-override_dh_auto_install = ["meson install -C builddir"]
+override_dh_auto_configure = ["just setup release"]
+override_dh_auto_build = ["echo skip"]
+override_dh_auto_install = ["just install $$PWD/debian/layer-shell"]
+override_dh_usrlocal = ["echo skip"]
