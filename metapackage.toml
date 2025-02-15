@@ -116,7 +116,7 @@ dependencies = [
     "cliphist",
     "layer-shell",
     "pavucontrol",
-    "syshud",
+    "swayosd",
     "hyprsunset",
     "hyprland-qtutils",
     "hyprsysteminfo",
