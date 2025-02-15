@@ -57,6 +57,7 @@ dependencies = [
     "clang",
     "lld",
     "clangd",
+    "linux-perf",
 
     # CLI
     "hugo",
@@ -96,6 +97,7 @@ dependencies = [
     "libpipewire-0.3-dev",
     "libdbus-1-dev",
     "libssl-dev",
+    "libgtkmm-4.0-dev",
 
     # Debian
     "apt-file",
@@ -110,6 +112,7 @@ dependencies = [
     "wf-recorder",
     "slurp",
     "grim",
+    "swappy",
     "cliphist",
     "layer-shell",
     "pavucontrol",
