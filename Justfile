@@ -62,17 +62,14 @@ layer-shell:
 fx:
     @just build fx
 
-syshud:
-    @just build syshud
-
 ghostty:
     @just build ghostty
 
 spot:
     @just build spot
 
-timeshift-autosnap-apt:
-    @just build timeshift-autosnap-apt
+make-btrfs-snapshot:
+    @just build make-btrfs-snapshot
 
 gaskpass:
     @just build gaskpass
