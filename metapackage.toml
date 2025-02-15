@@ -101,7 +101,7 @@ dependencies = [
 
     # Debian
     "apt-file",
-    "timeshift-autosnap-apt",
+    "make-btrfs-snapshot",
 
     # Hyprland
     "hyprland",
