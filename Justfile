@@ -19,6 +19,7 @@ hypr:
                 hypr/hyprsysteminfo,\
                 hypr/hyprpolkitagent,\
                 hypr/hyprland-qt-support,\
+                hypr/xdg-desktop-portal-hyprland,\
                 hypr/plugins/hyprexpo
 
 cosmic:
