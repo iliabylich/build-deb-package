@@ -18,7 +18,8 @@ hypr:
                 hypr/hyprsunset,\
                 hypr/hyprsysteminfo,\
                 hypr/hyprpolkitagent,\
-                hypr/hyprland-qt-support
+                hypr/hyprland-qt-support,\
+                hypr/plugins/hyprexpo
 
 cosmic:
     @just build cosmic/pop-icon-theme,\
