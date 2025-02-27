@@ -1,11 +1,11 @@
-version = { specific = "1.0.0" }
+version = { specific = "1.0.1" }
 dependencies = ["make", "wget"]
 arch = "amd64"
 path = ["/root/.cargo/bin"]
 
 [source.git-clone]
 url = "https://github.com/iliabylich/make-btrfs-snapshot.git"
-branch_or_tag = "v1.0.0"
+branch_or_tag = "v1.0.1"
 
 [debian]
 changelog = true
