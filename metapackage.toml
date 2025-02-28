@@ -38,6 +38,7 @@ dependencies = [
     "timeshift",
 
     # Dev tools
+    "gcc",
     "build-essential",
     "cmake",
     "meson",
@@ -58,6 +59,8 @@ dependencies = [
     "lld",
     "clangd",
     "linux-perf",
+    "gdb",
+    "sassc",
 
     # CLI
     "hugo",
@@ -86,6 +89,9 @@ dependencies = [
     "gaskpass",
     "xremap",
     "pipewire-dbus",
+    "apache2-utils",
+    "wireplumber",
+    "delta",
 
     # Libs
     "libjemalloc2",
@@ -102,6 +108,42 @@ dependencies = [
     # Debian
     "apt-file",
     "make-btrfs-snapshot",
+    "xwayland",
+
+    # System
+    "autoconf",
+    "automake",
+    "bash-completion",
+    "btrfs-progs",
+    "file",
+    "less",
+    "fakeroot",
+    "man-db",
+    "manpages",
+    "sudo",
+    "upower",
+    "vim-tiny",
+    "grub-common",
+    "grub2-common",
+    "apparmor",
+    "busybox",
+    "discover",
+    "efibootmgr",
+    "iproute2",
+    "iputils-ping",
+    "isc-dhcp-client",
+    "lsb-release",
+    "locales",
+    "ncurses-term",
+    "network-manager",
+    "openssh-client",
+    "polkitd",
+    "usbutils",
+    "util-linux-locales",
+    "wireless-tools",
+    "zlib1g",
+    "bind9-dnsutils",
+    "bind9-host",
 
     # Hyprland
     "hyprland",
@@ -122,6 +164,8 @@ dependencies = [
     "hyprsysteminfo",
     "hyprpolkitagent",
     "hyprland-qt-support",
+    "xdg-desktop-portal-hyprland",
+    "hyprspace",
 ]
 
 [debian.rules]
