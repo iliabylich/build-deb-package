@@ -13,7 +13,7 @@ dependencies = [
     "libwebp-dev",
     "libmagic-dev",
     "libcairo2-dev",
-    "librust-pangocairo-dev",
+    "libpango1.0-dev",
     "libgbm-dev",
     "libpam0g-dev",
     "libsdbus-c++-dev",
