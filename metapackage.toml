@@ -32,8 +32,8 @@ dependencies = [
     # "file-roller",
     # "obfuscate",
     # "zenity",
-    "ghostty",
-    "spot",
+    # "ghostty",
+    # "spot",
     "timeshift",
 
     # Dev tools
@@ -141,7 +141,7 @@ dependencies = [
     "hyprpolkitagent",
     "hyprland-qt-support",
     "xdg-desktop-portal-hyprland",
-    "hyprspace",
+    # "hyprspace",
 ]
 
 [debian.rules]
