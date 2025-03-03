@@ -19,9 +19,7 @@ hypr:
                 hypr/hyprsysteminfo,\
                 hypr/hyprpolkitagent,\
                 hypr/hyprland-qt-support,\
-                hypr/xdg-desktop-portal-hyprland,\
-                hypr/plugins/hyprspace,\
-                hypr/plugins/hyprexpo
+                hypr/xdg-desktop-portal-hyprland
 
 cosmic:
     @just build cosmic/pop-icon-theme,\

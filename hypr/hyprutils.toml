@@ -1,10 +1,10 @@
-version = { specific = "0.5.0" }
+version = { specific = "0.5.1" }
 dependencies = ["libpixman-1-dev"]
 arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprutils.git"
-branch_or_tag = "v0.5.0"
+branch_or_tag = "v0.5.1"
 
 [debian]
 changelog = true

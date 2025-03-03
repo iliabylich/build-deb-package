@@ -1,4 +1,4 @@
-version = { specific = "0.1.1-1" }
+version = { specific = "0.1.2" }
 dependencies = [
     "/shared/deb-latest/hyprutils.deb",
     "libpixman-1-dev",
@@ -7,12 +7,13 @@ dependencies = [
     "libwebp-dev",
     "libmagic-dev",
     "libjxl-dev",
+    "libspng-dev",
 ]
 arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprgraphics.git"
-branch_or_tag = "v0.1.1"
+branch_or_tag = "v0.1.2"
 
 [debian]
 changelog = true

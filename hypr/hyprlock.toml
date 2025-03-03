@@ -1,4 +1,4 @@
-version = { specific = "0.6.2" }
+version = { specific = "0.7.0" }
 dependencies = [
     "/shared/deb-latest/hyprutils.deb",
     "/shared/deb-latest/hyprlang.deb",
@@ -22,7 +22,7 @@ arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprlock.git"
-branch_or_tag = "v0.6.2"
+branch_or_tag = "v0.7.0"
 
 [debian]
 changelog = true
