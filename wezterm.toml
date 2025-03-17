@@ -1,0 +1,27 @@
+version = { specific = "0.0.1-20240317" }
+dependencies = ["git"]
+arch = "amd64"
+path = ["/root/.cargo/bin"]
+
+[source.git-clone]
+url = "https://github.com/wezterm/wezterm.git"
+branch_or_tag = "main"
+post_clone_scripts = ["apt update", "./get-deps"]
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "A GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = ["cargo build --release"]
+override_dh_auto_install = [
+    "install -Dm0755 target/release/wezterm debian/wezterm/usr/bin/wezterm",
+    "install -Dm0755 target/release/wezterm-gui debian/wezterm/usr/bin/wezterm-gui",
+    "install -Dm0644 assets/wezterm.desktop debian/wezterm/usr/share/applications/wezterm.desktop",
+]
+override_dh_auto_test = ["echo skip"]

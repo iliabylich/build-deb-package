@@ -81,6 +81,9 @@ xremap:
 pipewire-dbus:
     @just build pipewire-dbus
 
+wezterm:
+    @just build wezterm
+
 pwd := `pwd`
 base_configs_dir := "/shared"
 docker_image := "ghcr.io/iliabylich/debian-unstable-builder:latest"
