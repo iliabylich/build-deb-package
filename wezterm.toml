@@ -1,4 +1,4 @@
-version = { specific = "0.0.1-20240317" }
+version = { specific = "0.0.1-20240318" }
 dependencies = ["git"]
 arch = "amd64"
 path = ["/root/.cargo/bin"]
@@ -20,8 +20,15 @@ dependencies = ["${shlibs:Depends}"]
 "%" = ["dh $@"]
 override_dh_auto_build = ["cargo build --release"]
 override_dh_auto_install = [
-    "install -Dm0755 target/release/wezterm debian/wezterm/usr/bin/wezterm",
+    "install -Dm0755 target/release/wezterm-mux-server debian/wezterm/usr/bin/wezterm-mux-server",
     "install -Dm0755 target/release/wezterm-gui debian/wezterm/usr/bin/wezterm-gui",
+    "install -Dm0755 target/release/wezterm debian/wezterm/usr/bin/wezterm",
+    "install -Dm0755 assets/open-wezterm-here debian/wezterm/usr/bin/open-wezterm-here",
+    "install -Dm0755 target/release/strip-ansi-escapes debian/wezterm/usr/bin/strip-ansi-escapes",
+
+    "install -Dm0644 assets/icon/terminal.png debian/wezterm/usr/share/icons/hicolor/128x128/apps/org.wezfurlong.wezterm.png",
     "install -Dm0644 assets/wezterm.desktop debian/wezterm/usr/share/applications/wezterm.desktop",
+    "install -Dm0644 assets/wezterm.appdata.xml debian/wezterm/usr/share/metainfo/org.wezfurlong.wezterm.appdata.xml",
+    "install -Dm0644 assets/shell-completion/bash debian/wezterm/usr/share/bash-completion/completions/wezterm",
 ]
 override_dh_auto_test = ["echo skip"]
