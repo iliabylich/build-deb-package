@@ -14,7 +14,6 @@ dependencies = [
     # Gnome
     "nautilus",
     "gnome-system-monitor",
-    "gnome-terminal",
     "tuigreet",
     "greetd",
 
@@ -35,6 +34,7 @@ dependencies = [
     # "ghostty",
     # "spot",
     "timeshift",
+    "wezterm",
 
     # Dev tools
     "gcc",
@@ -103,6 +103,7 @@ dependencies = [
     "unzip",
     "pkexec",
     "logrotate",
+    "lsd",
 
     # Libs
     "libjemalloc2",
