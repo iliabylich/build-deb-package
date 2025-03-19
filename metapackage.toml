@@ -131,7 +131,7 @@ dependencies = [
     "wf-recorder",
     "slurp",
     "grim",
-    "swappy",
+    "satty",
     "cliphist",
     "layer-shell",
     "pavucontrol",
