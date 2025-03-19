@@ -1,0 +1,27 @@
+version = { specific = "0.16.0" }
+dependencies = [
+    "libgtk-4-dev",
+    "libadwaita-1-dev",
+    "libepoxy-dev",
+    "libfontconfig-dev",
+    "just",
+]
+arch = "amd64"
+path = ["/root/.cargo/bin"]
+
+[source.git-clone]
+url = "https://github.com/gabm/Satty.git"
+branch_or_tag = "v0.16.0"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "Satty - Modern Screenshot Annotation. A tool inspired by Swappy and Flameshot."
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = ["make build-release"]
+override_dh_auto_install = ["PREFIX=debian/satty/usr make install"]

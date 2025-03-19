@@ -84,6 +84,9 @@ pipewire-dbus:
 wezterm:
     @just build wezterm
 
+satty:
+    @just build satty
+
 pwd := `pwd`
 base_configs_dir := "/shared"
 docker_image := "ghcr.io/iliabylich/debian-unstable-builder:latest"
