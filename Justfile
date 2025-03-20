@@ -96,32 +96,29 @@ matugen:
 libinput-gestures:
     @just build libinput-gestures
 
-pwd := `pwd`
-base_configs_dir := "/shared"
 docker_image := "ghcr.io/iliabylich/debian-unstable-builder:latest"
-docker_entrypoint := "/bin/build-deb-package"
 
-run-in-docker command packages:
+run-in-docker command config_path:
     sudo docker run --rm \
-        -e BASE_CONFIGS_DIR="{{ base_configs_dir }}" \
-        -e PACKAGES="{{ packages }}" \
+        -e BASE_CONFIGS_DIR="/shared" \
+        -e CONFIG_PATH="{{ config_path }}" \
         -t \
-        -v "{{pwd}}:/shared" \
-        --entrypoint {{docker_entrypoint}} \
+        -v "$PWD:/shared" \
+        --entrypoint "/bin/build-deb-package" \
         {{docker_image}} \
         {{command}}
 
-build packages:
-    @just run-in-docker run {{packages}}
+build config_path:
+    @just run-in-docker run {{config_path}}
 
-parse packages:
-    @just run-in-docker parse {{packages}}
+parse config_path:
+    @just run-in-docker parse {{config_path}}
 
-explain packages:
-    @just run-in-docker explain {{packages}}
+explain config_path:
+    @just run-in-docker explain {{config_path}}
 
-deploy package:
-    ./remote/deploy.sh {{package}}
+deploy config_path:
+    ./remote/deploy.sh {{config_path}}
 
 docker-sh:
     sudo docker run --rm -it -v $PWD:/shared --entrypoint bash {{docker_image}}

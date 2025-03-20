@@ -1,0 +1,12 @@
+Source: {{package_name}}
+Section: utils
+Priority: extra
+Maintainer: John Doe <john@doe.org>
+Standards-Version: 4.6.2
+
+Package: {{package_name}}
+Section: utils
+Priority: extra
+Architecture: {{arch}}
+Depends: {{dependencies}}
+Description: {{description}}

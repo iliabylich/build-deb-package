@@ -136,6 +136,8 @@ fn cwd(path: String) -> miette::Result<()> {
     Ok(())
 }
 
+// this lint is false-positive, there's a wait() call in the statement below
+#[expect(clippy::zombie_processes)]
 fn spawn_and_forward_stdout_and_stderr(
     exe: String,
     args: Vec<String>,

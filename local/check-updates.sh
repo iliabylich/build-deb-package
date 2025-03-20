@@ -8,7 +8,7 @@ EXE=target/debug/build-deb-package
 color() {
     local color="$1"
     local line="$2"
-    echo -e "[$package] $color$line\033[0m"
+    echo -e "[$config_path] $color$line\033[0m"
 }
 
 err() {
@@ -44,12 +44,11 @@ for dir in . hypr cosmic; do
         if [[ "$config_path" == "./Cargo.toml" ]]; then
             continue
         fi
-        package="${config_path%.*}"
 
         echo
 
-        git_url="$(BASE_CONFIGS_DIR="$PWD" PACKAGES=$package $EXE print-git-url)"
-        git_tag_or_branch="$(BASE_CONFIGS_DIR="$PWD" PACKAGES=$package $EXE print-git-tag-or-branch)"
+        git_url="$(BASE_CONFIGS_DIR="$PWD" CONFIG_PATH=$config_path $EXE print-git-url)"
+        git_tag_or_branch="$(BASE_CONFIGS_DIR="$PWD" CONFIG_PATH=$config_path $EXE print-git-tag-or-branch)"
 
         if [[ "$git_url" == "none" ]]; then
             info "skipping, no git url"
