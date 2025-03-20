@@ -93,6 +93,9 @@ unsplash-wallpaper:
 matugen:
     @just build matugen
 
+libinput-gestures:
+    @just build libinput-gestures
+
 pwd := `pwd`
 base_configs_dir := "/shared"
 docker_image := "ghcr.io/iliabylich/debian-unstable-builder:latest"

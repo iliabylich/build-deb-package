@@ -1,0 +1,23 @@
+version = { specific = "2.79.0" }
+dependencies = []
+arch = "amd64"
+path = ["/root/.cargo/bin"]
+
+[source.git-clone]
+url = "https://github.com/bulletmark/libinput-gestures.git"
+branch_or_tag = "2.79"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "Actions gestures on your touchpad using libinput"
+dependencies = ["${shlibs:Depends}", "libinput-tools", "python3"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_install = [
+    "install -Dm0755 libinput-gestures debian/libinput-gestures/usr/bin/libinput-gestures",
+]
+override_dh_auto_test = ["echo skip"]
