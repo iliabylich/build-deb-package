@@ -87,6 +87,9 @@ wezterm:
 satty:
     @just build satty
 
+unsplash-wallpaper:
+    @just build unsplash-wallpaper
+
 pwd := `pwd`
 base_configs_dir := "/shared"
 docker_image := "ghcr.io/iliabylich/debian-unstable-builder:latest"

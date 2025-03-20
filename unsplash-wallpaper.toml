@@ -1,0 +1,23 @@
+version = { specific = "1.0.0" }
+dependencies = []
+arch = "amd64"
+path = ["/root/.cargo/bin"]
+
+[source.git-clone]
+url = "https://github.com/iliabylich/unsplash-wallpaper.git"
+branch_or_tag = "v1.0.0"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "A tiny tool to download multiple images from Unsplash API in parallel"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = ["CARGO_TERM_COLOR=always cargo build --release"]
+override_dh_auto_install = [
+    "install -Dm0755 target/release/unsplash-wallpaper debian/unsplash-wallpaper/usr/bin/unsplash-wallpaper",
+]
