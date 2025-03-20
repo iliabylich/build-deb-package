@@ -142,6 +142,9 @@ dependencies = [
     "hyprpolkitagent",
     "hyprland-qt-support",
     "xdg-desktop-portal-hyprland",
+    "unsplash-wallpaper",
+    "matugen",
+    "libinput-gestures",
     # "hyprspace",
 ]
 
