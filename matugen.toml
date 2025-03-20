@@ -1,0 +1,23 @@
+version = { specific = "2.4.1" }
+dependencies = []
+arch = "amd64"
+path = ["/root/.cargo/bin"]
+
+[source.git-clone]
+url = "https://github.com/InioX/matugen.git"
+branch_or_tag = "v2.4.1"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "A material you color generation tool"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = ["CARGO_TERM_COLOR=always cargo build --release"]
+override_dh_auto_install = [
+    "install -Dm0755 target/release/matugen debian/matugen/usr/bin/matugen",
+]

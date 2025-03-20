@@ -90,6 +90,9 @@ satty:
 unsplash-wallpaper:
     @just build unsplash-wallpaper
 
+matugen:
+    @just build matugen
+
 pwd := `pwd`
 base_configs_dir := "/shared"
 docker_image := "ghcr.io/iliabylich/debian-unstable-builder:latest"
