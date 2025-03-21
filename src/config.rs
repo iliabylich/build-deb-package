@@ -19,8 +19,10 @@ pub(crate) struct Config {
 }
 
 impl Config {
-    pub(crate) fn from_path(path: &str) -> Result<Self> {
-        let content = std::fs::read_to_string(path)
+    pub(crate) fn new(dir: &str, path: &str) -> Result<Self> {
+        let path = format!("{dir}/{path}");
+
+        let content = std::fs::read_to_string(&path)
             .into_diagnostic()
             .wrap_err_with(|| format!("failed to open {:?}", path))?;
 
@@ -28,7 +30,7 @@ impl Config {
             .into_diagnostic()
             .wrap_err_with(|| format!("failed to parse {:?}", path))?;
 
-        config.package_name = Path::new(path)
+        config.package_name = Path::new(&path)
             .with_extension("")
             .file_name()
             .wrap_err_with(|| format!("failed to get base filename from {:?}", path))?
@@ -36,21 +38,6 @@ impl Config {
             .wrap_err("not a UTF-8 path")?
             .to_string();
 
-        Ok(config)
-    }
-
-    pub(crate) fn from_env() -> Result<Self> {
-        let base_configs_dir = std::env::var("BASE_CONFIGS_DIR")
-            .into_diagnostic()
-            .context("BASE_CONFIGS_DIR is not set")?;
-
-        let config_path = std::env::var("CONFIG_PATH")
-            .into_diagnostic()
-            .context("CONFIG_PATH is not set")?;
-
-        let config_path = format!("{base_configs_dir}/{config_path}");
-
-        let config = Self::from_path(&config_path)?;
         Ok(config)
     }
 }

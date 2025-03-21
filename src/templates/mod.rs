@@ -78,6 +78,10 @@ impl Templates {
                 out.push(format!("\t{line}"));
             }
         }
+
+        out.push(format!("override_dh_auto_test:"));
+        out.push(format!("\techo \"skip\""));
+
         for (target, lines) in targets {
             out.push(format!("{target}:"));
             for line in lines {

@@ -1,0 +1,14 @@
+hypr/hyprutils.toml
+hypr/hyprlang.toml
+hypr/hyprcursor.toml
+hypr/hyprland-qtutils.toml
+hypr/hyprwayland-scanner.toml
+hypr/hyprgraphics.toml
+hypr/aquamarine.toml
+hypr/hyprland.toml
+hypr/hyprlock.toml
+hypr/hyprsunset.toml
+hypr/hyprsysteminfo.toml
+hypr/hyprpolkitagent.toml
+hypr/hyprland-qt-support.toml
+hypr/xdg-desktop-portal-hyprland.toml

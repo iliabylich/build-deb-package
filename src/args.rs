@@ -1,4 +1,4 @@
-#[derive(clap::Parser)]
+#[derive(clap::Parser, Debug)]
 pub(crate) enum Args {
     Parse,
     Explain,

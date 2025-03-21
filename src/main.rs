@@ -1,43 +1,56 @@
 use args::Args;
 use clap::Parser;
 use config::Config;
-use miette::Result;
+use input::Input;
+use list::List;
+use miette::{Result, bail};
 use strategist::Strategist;
 use templates::Templates;
 
 mod args;
 mod config;
+mod input;
+mod list;
 mod plan;
 mod strategist;
 mod templates;
 
 fn main() -> Result<()> {
-    let args = Args::parse();
-    let config = Config::from_env()?;
+    let input = Input::from_env()?;
 
-    match args {
-        Args::Parse => {
+    match (Args::parse(), input) {
+        (Args::Parse, Input::Singular(config)) => {
             println!("{:#?}", config);
         }
 
-        Args::Explain => {
+        (Args::Explain, Input::Singular(config)) => {
             let plan = Strategist::make_plan(config)?;
             plan.explain();
         }
 
-        Args::Run => {
-            let plan = Strategist::make_plan(config)?;
-            plan.run()?;
+        (Args::Run, input) => {
+            let configs = match input {
+                Input::Plural(list) => list.configs()?,
+                Input::Singular(config) => vec![config],
+            };
+            for config in configs {
+                let plan = Strategist::make_plan(config)?;
+                plan.run()?;
+            }
         }
 
-        Args::PrintGitUrl => {
+        (Args::PrintGitUrl, Input::Singular(config)) => {
             let git_url = config.source.git_url().unwrap_or("none");
             println!("{git_url}");
         }
 
-        Args::PrintGitTagOrBranch => {
+        (Args::PrintGitTagOrBranch, Input::Singular(config)) => {
             let git_branch = config.source.git_branch_or_tag().unwrap_or("none");
             println!("{git_branch}");
+        }
+
+        (args, input) => {
+            bail!("can't run {args:?} on '{input}'")
         }
     }
 
