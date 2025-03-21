@@ -35,12 +35,12 @@ get_latest_remote_tag() {
     gh api \
         -H "Accept: application/vnd.github+json" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
-        /repos/$owner_repo/tags \
+        "/repos/$owner_repo/tags" \
         --jq ".[] | .name " | sort | tail -n1
 }
 
 for dir in . hypr cosmic; do
-    for config_path in $dir/*.toml; do
+    for config_path in "$dir"/*.toml; do
         if [[ "$config_path" == "./Cargo.toml" ]]; then
             continue
         fi

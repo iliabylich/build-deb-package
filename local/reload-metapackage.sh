@@ -2,6 +2,6 @@
 
 set -eu
 
-PACKAGES=$(cat metapackage.toml | tomlq -r ".debian.control.dependencies | join(\" \")")
+PACKAGES=$(tomlq -r ".debian.control.dependencies | join(\" \")" metapackage.toml)
 
-sudo apt-mark auto $PACKAGES
+eval "sudo apt-mark auto $PACKAGES"

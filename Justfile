@@ -35,3 +35,6 @@ docker-sh:
 unpack debfile:
     mkdir -p tmp
     dpkg-deb -R {{debfile}} tmp
+
+shellcheck:
+    shellcheck -x **/*.sh
