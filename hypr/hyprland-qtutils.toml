@@ -54,4 +54,3 @@ override_dh_auto_build = [
 override_dh_auto_install = [
     "cmake --install build --prefix debian/hyprland-qtutils/usr",
 ]
-override_dh_auto_test = ["echo skip"]

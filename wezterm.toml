@@ -31,4 +31,3 @@ override_dh_auto_install = [
     "install -Dm0644 assets/wezterm.appdata.xml debian/wezterm/usr/share/metainfo/org.wezfurlong.wezterm.appdata.xml",
     "install -Dm0644 assets/shell-completion/bash debian/wezterm/usr/share/bash-completion/completions/wezterm",
 ]
-override_dh_auto_test = ["echo skip"]

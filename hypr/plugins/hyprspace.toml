@@ -39,5 +39,4 @@ override_dh_auto_install = [
     "install -Dm0755 /shared/hypr/plugins/hyprspace-enable.sh debian/hyprspace/usr/bin/hyprspace-enable",
 ]
 override_dh_usrlocal = ["echo skip"]
-override_dh_auto_test = ["echo skip"]
 override_dh_strip = ["echo skip"]

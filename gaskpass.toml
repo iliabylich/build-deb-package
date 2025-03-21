@@ -21,4 +21,3 @@ override_dh_auto_install = [
     "install -Dm0755 gaskpass debian/gaskpass/usr/bin/gaskpass",
     "install -Dm0755 gaskpass-sudo debian/gaskpass/usr/bin/gaskpass-sudo",
 ]
-override_dh_auto_test = ["echo skip"]

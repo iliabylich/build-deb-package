@@ -20,4 +20,3 @@ dependencies = ["${shlibs:Depends}", "libinput-tools", "python3"]
 override_dh_auto_install = [
     "install -Dm0755 libinput-gestures debian/libinput-gestures/usr/bin/libinput-gestures",
 ]
-override_dh_auto_test = ["echo skip"]

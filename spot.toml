@@ -39,4 +39,3 @@ override_dh_auto_install = [
     "rm -rf debian/spot/usr",
     "mv target/debian/spot/usr debian/spot/usr",
 ]
-override_dh_auto_test = ["echo skip"]

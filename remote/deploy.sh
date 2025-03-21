@@ -7,15 +7,16 @@ if (( $# != 1 )); then
     exit 1
 fi
 
-JUST_COMMAND="$1"
+CONFIG_PATH="$1"
 STAMP=$(date "+%Y-%m-%d %H:%M:%S")
+RELEASE_NAME=$(echo "${CONFIG_PATH%%.*}" | tr "/" "-")
 
 source remote/.wait-for-run-to-finish.sh
 
-RUN_NAME="Building $JUST_COMMAND at $STAMP"
-gh workflow run release -f justCommand="$JUST_COMMAND" -f runName="$RUN_NAME"
+RUN_NAME="Building $CONFIG_PATH at $STAMP"
+gh workflow run release -f configPath="$CONFIG_PATH" -f runName="$RUN_NAME" -f releaseName="$RELEASE_NAME"
 waitForRunToFinish iliabylich/build-deb-package "$RUN_NAME"
-notify-send "Finished building $JUST_COMMAND"
+notify-send "Finished building $CONFIG_PATH"
 
 RUN_NAME="Re-index at $STAMP"
 gh workflow run -R iliabylich/ppa deploy -f runName="$RUN_NAME"

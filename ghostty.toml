@@ -29,4 +29,3 @@ override_dh_auto_install = [
     "zig build -p debian/ghostty/usr -Doptimize=ReleaseFast -fsys=fontconfig",
     "rm -f debian/ghostty/usr/share/terminfo/g/ghostty",
 ]
-override_dh_auto_test = ["echo skip"]

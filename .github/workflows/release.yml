@@ -3,8 +3,11 @@ name: release
 on:
   workflow_dispatch:
     inputs:
-      justCommand:
+      configPath:
         description: Just command to run
+        required: true
+      releaseName:
+        description: Name of the release to create
         required: true
       runName:
         description: an ID that is displayed in the name of the run (used for GH CLI scripting)
@@ -20,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: extractions/setup-just@v2
 
-      - run: just ${{ github.event.inputs.justCommand }}
+      - run: just build ${{ github.event.inputs.configPath }}
 
       - run: ls -l
 
@@ -30,6 +33,6 @@ jobs:
           allowUpdates: true
           artifactErrorsFailBuild: true
           removeArtifacts: true
-          tag: ${{ github.event.inputs.justCommand }}
+          tag: ${{ github.event.inputs.releaseName }}
           artifacts: "*.deb"
           token: ${{ secrets.GITHUB_TOKEN }}

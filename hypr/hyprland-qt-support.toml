@@ -32,4 +32,3 @@ override_dh_auto_install = [
     "mkdir -p debian/hyprland-qt-support/usr/lib/x86_64-linux-gnu/qt6/qml/org",
     "cp -r /lib/qt6/qml/org/hyprland debian/hyprland-qt-support/usr/lib/x86_64-linux-gnu/qt6/qml/org/hyprland",
 ]
-override_dh_auto_test = ["echo skip"]

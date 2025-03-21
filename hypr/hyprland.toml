@@ -57,4 +57,3 @@ override_dh_auto_install = [
     "cmake --install build --prefix debian/hyprland/usr",
 ]
 override_dh_usrlocal = ["echo skip"]
-override_dh_auto_test = ["echo skip"]
