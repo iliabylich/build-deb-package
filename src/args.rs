@@ -6,4 +6,6 @@ pub(crate) enum Args {
 
     PrintGitUrl,
     PrintGitTagOrBranch,
+
+    BumpVersionTrailer,
 }

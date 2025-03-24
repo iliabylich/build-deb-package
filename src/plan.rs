@@ -1,10 +1,10 @@
+use crate::colors::{GREEN, RESET, YELLOW};
+use miette::{Context, IntoDiagnostic};
 use std::{
     collections::HashMap,
     io::{BufRead, BufReader},
     process::Stdio,
 };
-
-use miette::{Context, IntoDiagnostic};
 
 #[derive(Debug)]
 pub(crate) struct Plan {
@@ -85,14 +85,6 @@ enum Action {
     Script { exe: String, args: Vec<String> },
     WriteFile { path: String, contents: String },
 }
-
-const RESET: anstyle::Reset = anstyle::Reset;
-const GREEN: anstyle::Style = anstyle::Style::new()
-    .bold()
-    .fg_color(Some(anstyle::Color::Ansi(anstyle::AnsiColor::Green)));
-const YELLOW: anstyle::Style = anstyle::Style::new()
-    .bold()
-    .fg_color(Some(anstyle::Color::Ansi(anstyle::AnsiColor::Yellow)));
 
 impl Action {
     fn explain(&self) {

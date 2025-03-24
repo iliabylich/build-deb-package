@@ -28,6 +28,13 @@ impl Input {
             bail!("given config ({path}) is neither .list nor .toml")
         }
     }
+
+    pub(crate) fn expand_into_config_list(self) -> Result<Vec<Config>> {
+        match self {
+            Input::Plural(list) => list.configs(),
+            Input::Singular(config) => Ok(vec![config]),
+        }
+    }
 }
 
 impl std::fmt::Display for Input {

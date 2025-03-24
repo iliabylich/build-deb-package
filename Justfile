@@ -38,3 +38,6 @@ unpack debfile:
 
 shellcheck:
     shellcheck -x **/*.sh
+
+bump config_path:
+    BASE_CONFIGS_DIR=$PWD CONFIG_PATH={{config_path}} cargo run -- bump-version-trailer
