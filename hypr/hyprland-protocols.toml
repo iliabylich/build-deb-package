@@ -1,0 +1,23 @@
+version = { specific = "0.6.2" }
+dependencies = ["meson"]
+arch = "amd64"
+
+[source.git-clone]
+url = "https://github.com/hyprwm/hyprland-protocols.git"
+branch_or_tag = "v0.6.2"
+
+[debian]
+changelog = true
+compat = { version = 10 }
+
+[debian.control]
+description = "Wayland protocol extensions for Hyprland"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+override_dh_auto_configure = ["echo skip"]
+override_dh_auto_build = ["meson setup build"]
+override_dh_auto_install = [
+    "meson install -C build --destdir=$$PWD/debian/hyprland-protocols",
+]
+override_dh_usrlocal = ["echo skip"]

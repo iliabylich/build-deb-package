@@ -1,4 +1,4 @@
-version = { specific = "0.1.11-1" }
+version = { specific = "0.1.12" }
 dependencies = [
     "/shared/deb-latest/hyprutils.deb",
     "/shared/deb-latest/hyprlang.deb",
@@ -12,7 +12,7 @@ arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprcursor.git"
-branch_or_tag = "v0.1.11"
+branch_or_tag = "v0.1.12"
 
 [debian]
 changelog = true

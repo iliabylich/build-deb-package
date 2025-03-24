@@ -1,17 +1,17 @@
-version = { specific = "0.1.0-2" }
+version = { specific = "0.2.0" }
 dependencies = [
     "/shared/deb-latest/hyprutils.deb",
     "/shared/deb-latest/hyprwayland-scanner.deb",
+    "/shared/deb-latest/hyprland-protocols.deb",
     "libwayland-dev",
     "wayland-protocols",
-    "hyprland-protocols",
     "libpugixml-dev",
 ]
 arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprsunset.git"
-branch_or_tag = "v0.1.0"
+branch_or_tag = "v0.2.0"
 
 [debian]
 changelog = true

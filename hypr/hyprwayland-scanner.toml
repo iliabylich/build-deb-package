@@ -1,4 +1,4 @@
-version = { specific = "0.4.4" }
+version = { specific = "0.4.4-1" }
 dependencies = ["libpugixml-dev"]
 arch = "amd64"
 

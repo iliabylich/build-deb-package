@@ -1,4 +1,4 @@
-version = { specific = "0.47.0" }
+version = { specific = "0.47.0-1" }
 dependencies = [
     "/shared/deb-latest/aquamarine.deb",
     "/shared/deb-latest/hyprlang.deb",
