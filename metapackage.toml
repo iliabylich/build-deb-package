@@ -104,6 +104,12 @@ dependencies = [
     "pkexec",
     "logrotate",
     "lsd",
+    "iotop",
+    "powertop",
+    "shellcheck",
+    "iputils-ping",
+    "lsb-release",
+    "network-manager",
 
     # Libs
     "libjemalloc2",
@@ -146,6 +152,7 @@ dependencies = [
     "matugen",
     "libinput-gestures",
     # "hyprspace",
+    "bluez",
 ]
 
 [debian.rules]
