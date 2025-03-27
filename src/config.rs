@@ -18,8 +18,10 @@ pub(crate) struct Config {
     pub(crate) debian: Debian,
     pub(crate) arch: String,
 
-    pub(crate) env: Option<HashMap<String, String>>,
-    pub(crate) path: Option<Vec<String>>,
+    #[serde(default)]
+    pub(crate) env: HashMap<String, String>,
+    #[serde(default)]
+    pub(crate) path: Vec<String>,
     pub(crate) additionally_produced_packages: Option<Vec<String>>,
 }
 
@@ -143,7 +145,8 @@ impl Source {
 pub(crate) struct Debian {
     pub(crate) changelog: bool,
     pub(crate) control: Option<Control>,
-    pub(crate) rules: Option<HashMap<String, Vec<String>>>,
+    #[serde(default)]
+    pub(crate) rules: HashMap<String, Vec<String>>,
 }
 
 #[derive(serde::Deserialize, Debug)]

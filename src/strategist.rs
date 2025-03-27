@@ -1,4 +1,4 @@
-use crate::{Config, Templates, config::Source, plan::Plan};
+use crate::{Config, Templates, config::Source, num_cpus::num_cpus, plan::Plan};
 use miette::{Context as _, Result};
 
 pub(crate) struct Strategist {
@@ -12,8 +12,12 @@ impl Strategist {
     pub(crate) fn make_plan(mut config: Config) -> Result<Plan> {
         let version = config.version.resolve();
 
-        let env = config.env.take().unwrap_or_default();
-        let path = config.path.take().unwrap_or_default();
+        let mut env = std::mem::take(&mut config.env);
+        env.insert(
+            "DEB_BUILD_OPTIONS".to_string(),
+            format!("parallel={}", num_cpus()?),
+        );
+        let path = std::mem::take(&mut config.path);
         let plan = Plan::new(env, path);
 
         let templates = Templates::new()?;
@@ -156,11 +160,10 @@ impl Strategist {
         Ok(())
     }
     fn write_rules(&mut self) -> Result<()> {
-        if let Some(targets) = self.config.debian.rules.take() {
-            let contents = self.templates.rules(targets)?;
-            self.plan.write_file("debian/rules", contents);
-            self.plan.exec("chmod", ["+x", "debian/rules"]);
-        }
+        let targets = std::mem::take(&mut self.config.debian.rules);
+        let contents = self.templates.rules(targets)?;
+        self.plan.write_file("debian/rules", contents);
+        self.plan.exec("chmod", ["+x", "debian/rules"]);
         Ok(())
     }
 
