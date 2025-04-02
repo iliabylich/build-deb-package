@@ -62,6 +62,9 @@ dependencies = [
     "sassc",
     "autoconf",
     "automake",
+    "xxd",
+    "cbindgen",
+    "clang-tidy",
 
     # CLI
     "hugo",
