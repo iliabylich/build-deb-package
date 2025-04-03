@@ -47,6 +47,10 @@ impl Strategist {
         std::mem::take(&mut self.config.dependencies)
     }
 
+    fn take_binstall(&mut self) -> Vec<String> {
+        std::mem::take(&mut self.config.binstall)
+    }
+
     fn take_additionally_produced_packages(&mut self) -> Vec<String> {
         self.config
             .additionally_produced_packages
@@ -63,13 +67,11 @@ impl Strategist {
 
         self.plan.exec("apt", ["update"]);
         let dependencies = self.take_dependencies();
-        self.plan.exec(
-            "apt",
-            ["install", "-y"]
-                .into_iter()
-                .chain(dependencies.iter().map(|e| e.as_str()))
-                .collect::<Vec<_>>(),
-        );
+        self.plan.exec2("apt", "install", "-y", dependencies);
+        let binstall = self.take_binstall();
+        if !binstall.is_empty() {
+            self.plan.exec2("cargo", "binstall", "-y", binstall);
+        }
 
         self.plan.exec("mkdir", ["-p", "debian"]);
         self.write_changelog()

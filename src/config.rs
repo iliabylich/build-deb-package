@@ -17,6 +17,8 @@ pub(crate) struct Config {
     pub(crate) source: Source,
     pub(crate) debian: Debian,
     pub(crate) arch: String,
+    #[serde(default)]
+    pub(crate) binstall: Vec<String>,
 
     #[serde(default)]
     pub(crate) env: HashMap<String, String>,

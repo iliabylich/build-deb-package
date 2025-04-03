@@ -11,11 +11,11 @@ dependencies = [
     "ninja-build",
     "sassc",
     "xxd",
-    "cbindgen",
 ]
 arch = "amd64"
 path = ["/root/.cargo/bin"]
 env = { "CXX" = "g++" }
+binstall = ["cbindgen"]
 
 [source.git-clone]
 url = "https://github.com/iliabylich/layer-shell.git"

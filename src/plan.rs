@@ -33,6 +33,36 @@ impl Plan {
         });
     }
 
+    #[allow(dead_code)]
+    pub(crate) fn exec1(
+        &mut self,
+        exe: impl Into<String>,
+        arg1: impl Into<String>,
+        args: impl IntoIterator<Item = impl Into<String>>,
+    ) {
+        self.exec(
+            exe,
+            [arg1.into()]
+                .into_iter()
+                .chain(args.into_iter().map(|e| e.into())),
+        )
+    }
+
+    pub(crate) fn exec2(
+        &mut self,
+        exe: impl Into<String>,
+        arg1: impl Into<String>,
+        arg2: impl Into<String>,
+        args: impl IntoIterator<Item = impl Into<String>>,
+    ) {
+        self.exec(
+            exe,
+            [arg1.into(), arg2.into()]
+                .into_iter()
+                .chain(args.into_iter().map(|e| e.into())),
+        )
+    }
+
     pub(crate) fn write_file(&mut self, path: impl Into<String>, contents: impl Into<String>) {
         self.actions.push(Action::WriteFile {
             path: path.into(),
