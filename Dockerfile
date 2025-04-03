@@ -1,6 +1,7 @@
 FROM debian:unstable
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="/root/.cargo/bin:$PATH"
 
 RUN apt update && \
     apt install --no-install-recommends -y \
