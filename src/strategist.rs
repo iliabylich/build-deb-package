@@ -1,5 +1,5 @@
 use crate::{Config, Templates, config::Source, num_cpus::num_cpus, plan::Plan};
-use miette::{Context as _, Result};
+use anyhow::{Context as _, Result};
 
 pub(crate) struct Strategist {
     config: Config,

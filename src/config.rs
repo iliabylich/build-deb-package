@@ -1,5 +1,5 @@
 use crate::colors::{GREEN, RESET, YELLOW};
-use miette::{Context as _, IntoDiagnostic as _, Result};
+use anyhow::{Context as _, Result};
 use serde::Deserialize;
 use std::{collections::HashMap, path::Path};
 
@@ -30,12 +30,10 @@ impl Config {
         let absolute_path = format!("{dir}/{path}");
 
         let content = std::fs::read_to_string(&absolute_path)
-            .into_diagnostic()
-            .wrap_err_with(|| format!("failed to read {absolute_path}"))?;
+            .with_context(|| format!("failed to read {absolute_path}"))?;
 
-        let mut config: Config = toml::from_str(&content)
-            .into_diagnostic()
-            .wrap_err_with(|| format!("failed to parse {absolute_path}"))?;
+        let mut config: Config =
+            toml::from_str(&content).with_context(|| format!("failed to parse {absolute_path}"))?;
 
         config.config_dir = dir.to_string();
         config.config_path = path.to_string();
@@ -43,9 +41,9 @@ impl Config {
         config.package_name = Path::new(&absolute_path)
             .with_extension("")
             .file_name()
-            .wrap_err_with(|| format!("failed to get base filename from {absolute_path}"))?
+            .with_context(|| format!("failed to get base filename from {absolute_path}"))?
             .to_str()
-            .wrap_err("not a UTF-8 path")?
+            .context("not a UTF-8 path")?
             .to_string();
 
         Ok(config)
@@ -57,8 +55,7 @@ impl Config {
 
         let absolute_path = format!("{dir}/{path}");
         let content = std::fs::read_to_string(&absolute_path)
-            .into_diagnostic()
-            .wrap_err_with(|| format!("failed to read {absolute_path}",))?;
+            .with_context(|| format!("failed to read {absolute_path}",))?;
 
         if content.contains("0-0-stamp") {
             println!("[{path}] {YELLOW}Skipping, it has monotonically incrementing version{RESET}");
@@ -75,7 +72,6 @@ impl Config {
         let new_version = if let Some((base, trailer)) = version.split_once('-') {
             let trailer = trailer
                 .parse::<u32>()
-                .into_diagnostic()
                 .with_context(|| format!("non-numeric version trailer in {path}"))?;
             format!("{base}-{}", trailer + 1)
         } else {
@@ -86,7 +82,6 @@ impl Config {
         let new_config = format!("{pre}{VERSION_PREFIX}{new_version}\"{post}");
 
         std::fs::write(absolute_path, new_config)
-            .into_diagnostic()
             .with_context(|| format!("failed to update {path}"))?;
 
         Ok(())

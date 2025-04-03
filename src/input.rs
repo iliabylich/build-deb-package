@@ -1,5 +1,5 @@
 use crate::{Config, List};
-use miette::{Context as _, IntoDiagnostic as _, Result, bail};
+use anyhow::{Context as _, Result, bail};
 
 #[expect(clippy::large_enum_variant)]
 #[derive(Debug)]
@@ -10,13 +10,9 @@ pub(crate) enum Input {
 
 impl Input {
     pub(crate) fn from_env() -> Result<Self> {
-        let dir = std::env::var("BASE_CONFIGS_DIR")
-            .into_diagnostic()
-            .context("BASE_CONFIGS_DIR is not set")?;
+        let dir = std::env::var("BASE_CONFIGS_DIR").context("BASE_CONFIGS_DIR is not set")?;
 
-        let path = std::env::var("CONFIG_PATH")
-            .into_diagnostic()
-            .context("CONFIG_PATH is not set")?;
+        let path = std::env::var("CONFIG_PATH").context("CONFIG_PATH is not set")?;
 
         if path.ends_with(".list") {
             let list = List::new(&dir, &path)?;

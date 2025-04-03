@@ -1,5 +1,5 @@
 use crate::colors::{GREEN, RESET, YELLOW};
-use miette::{Context, IntoDiagnostic};
+use anyhow::{Context as _, Result, bail};
 use std::{
     collections::HashMap,
     io::{BufRead, BufReader},
@@ -68,7 +68,7 @@ impl Plan {
         }
     }
 
-    pub(crate) fn run(self) -> miette::Result<()> {
+    pub(crate) fn run(self) -> Result<()> {
         for script in self.actions {
             println!("::group::{}", script.header());
             let result = script.run(&self.env, &self.path);
@@ -109,7 +109,7 @@ impl Action {
         }
     }
 
-    fn run(self, env: &HashMap<String, String>, path: &[String]) -> miette::Result<()> {
+    fn run(self, env: &HashMap<String, String>, path: &[String]) -> Result<()> {
         self.explain();
 
         match self {
@@ -120,9 +120,8 @@ impl Action {
     }
 }
 
-fn cwd(path: String) -> miette::Result<()> {
+fn cwd(path: String) -> Result<()> {
     std::env::set_current_dir(&path)
-        .into_diagnostic()
         .with_context(|| format!("failed to change working directory to {path}"))?;
 
     Ok(())
@@ -135,7 +134,7 @@ fn spawn_and_forward_stdout_and_stderr(
     args: Vec<String>,
     env: &HashMap<String, String>,
     path: &[String],
-) -> miette::Result<()> {
+) -> Result<()> {
     let mut command = std::process::Command::new(exe.clone());
 
     let mut new_path = std::env::var("PATH").unwrap();
@@ -183,13 +182,10 @@ fn spawn_and_forward_stdout_and_stderr(
         }
     });
 
-    let status = child
-        .wait()
-        .into_diagnostic()
-        .context("failed to wait on child")?;
+    let status = child.wait().context("failed to wait on child")?;
 
     if !status.success() {
-        miette::bail!(
+        bail!(
             "failed to execute {} {:?}\nstatus code: {:?}",
             exe,
             args,
@@ -203,8 +199,6 @@ fn spawn_and_forward_stdout_and_stderr(
     Ok(())
 }
 
-fn write_file(path: String, contents: String) -> miette::Result<()> {
-    std::fs::write(&path, contents)
-        .into_diagnostic()
-        .with_context(|| format!("Failed to write to {path}"))
+fn write_file(path: String, contents: String) -> Result<()> {
+    std::fs::write(&path, contents).with_context(|| format!("Failed to write to {path}"))
 }

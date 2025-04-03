@@ -1,5 +1,5 @@
 use crate::Config;
-use miette::{Context as _, IntoDiagnostic as _, Result};
+use anyhow::{Context as _, Result};
 
 #[derive(Debug)]
 pub(crate) struct List {
@@ -11,9 +11,8 @@ impl List {
     pub(crate) fn new(dir: &str, path: &str) -> Result<Self> {
         let path = format!("{dir}/{path}");
 
-        let content = std::fs::read_to_string(&path)
-            .into_diagnostic()
-            .wrap_err_with(|| format!("failed to open {:?}", path))?;
+        let content =
+            std::fs::read_to_string(&path).with_context(|| format!("failed to open {:?}", path))?;
 
         let paths = content
             .lines()

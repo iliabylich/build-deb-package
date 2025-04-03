@@ -1,4 +1,4 @@
-use miette::{Context as _, IntoDiagnostic as _, Result};
+use anyhow::{Context as _, Result};
 use std::collections::HashMap;
 
 pub(crate) struct Templates {
@@ -11,19 +11,15 @@ impl Templates {
 
         engine
             .add_template("changelog", include_str!("./changelog"))
-            .into_diagnostic()
             .context("failed to add changelog template")?;
         engine
             .add_template("compat", include_str!("./compat"))
-            .into_diagnostic()
             .context("failed to add compat template")?;
         engine
             .add_template("control", include_str!("./control"))
-            .into_diagnostic()
             .context("failed to add control template")?;
         engine
             .add_template("rules", include_str!("./rules"))
-            .into_diagnostic()
             .context("failed to add rules template")?;
 
         Ok(Self { engine })
@@ -37,7 +33,6 @@ impl Templates {
                 version: version
             })
             .to_string()
-            .into_diagnostic()
             .context("failed to render changelog template")
     }
 
@@ -46,7 +41,6 @@ impl Templates {
             .template("compat")
             .render(upon::value! {})
             .to_string()
-            .into_diagnostic()
             .context("failed to render compat template")
     }
 
@@ -66,7 +60,6 @@ impl Templates {
                 description: description
             })
             .to_string()
-            .into_diagnostic()
             .context("failed to render control template")
     }
 
@@ -79,8 +72,8 @@ impl Templates {
             }
         }
 
-        out.push(format!("override_dh_auto_test:"));
-        out.push(format!("\techo \"skip\""));
+        out.push("override_dh_auto_test:".to_string());
+        out.push("\techo \"skip\"".to_string());
 
         for (target, lines) in targets {
             out.push(format!("{target}:"));
@@ -93,7 +86,6 @@ impl Templates {
             .template("rules")
             .render(upon::value! { targets: targets })
             .to_string()
-            .into_diagnostic()
             .context("failed to render rules templates")
     }
 }
