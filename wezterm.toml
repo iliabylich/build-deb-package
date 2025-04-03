@@ -1,7 +1,6 @@
 version = { specific = "0.0.1-20240318" }
 dependencies = ["git"]
 arch = "amd64"
-path = ["/root/.cargo/bin"]
 
 [source.git-clone]
 url = "https://github.com/wezterm/wezterm.git"

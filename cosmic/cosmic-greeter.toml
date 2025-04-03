@@ -9,7 +9,6 @@ dependencies = [
 ]
 arch = "amd64"
 env = { VENDOR = "0" }
-path = ["/root/.cargo/bin"]
 additionally_produced_packages = ["cosmic-greeter-daemon"]
 
 [source.git-clone]

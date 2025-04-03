@@ -1,7 +1,6 @@
 version = { specific = "2.0.0" }
 dependencies = ["libpipewire-0.3-dev", "libclang1", "clang"]
 arch = "amd64"
-path = ["/root/.cargo/bin"]
 
 [source.git-clone]
 url = "https://github.com/iliabylich/pipewire-dbus.git"

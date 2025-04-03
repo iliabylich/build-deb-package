@@ -13,7 +13,6 @@ dependencies = [
     "xxd",
 ]
 arch = "amd64"
-path = ["/root/.cargo/bin"]
 env = { "CXX" = "g++" }
 binstall = ["cbindgen"]
 

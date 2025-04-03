@@ -14,7 +14,6 @@ dependencies = [
     "ninja-build",
 ]
 arch = "amd64"
-path = ["/root/.cargo/bin"]
 
 [source.git-clone]
 url = "https://github.com/xou816/spot.git"

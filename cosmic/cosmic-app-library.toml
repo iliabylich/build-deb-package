@@ -2,7 +2,6 @@ version = { specific = "1.0.0-alpha5" }
 dependencies = ["libxkbcommon-dev", "libwayland-dev", "just"]
 arch = "amd64"
 env = { VENDOR = "0" }
-path = ["/root/.cargo/bin"]
 
 [source.git-clone]
 url = "https://github.com/pop-os/cosmic-applibrary.git"

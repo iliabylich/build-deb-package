@@ -1,7 +1,6 @@
 version = { specific = "2.4.1" }
 dependencies = []
 arch = "amd64"
-path = ["/root/.cargo/bin"]
 
 [source.git-clone]
 url = "https://github.com/InioX/matugen.git"
