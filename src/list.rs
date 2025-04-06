@@ -18,6 +18,7 @@ impl List {
             .lines()
             .map(|l| l.trim())
             .filter(|l| !l.is_empty())
+            .filter(|l| !l.starts_with('#'))
             .map(|l| l.to_string())
             .collect::<Vec<_>>();
 

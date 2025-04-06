@@ -26,6 +26,10 @@ fn main() -> Result<()> {
             println!("{:#?}", config);
         }
 
+        (Args::Parse, Input::Plural(list)) => {
+            println!("{:#?}", list);
+        }
+
         (Args::Explain, Input::Singular(config)) => {
             let plan = Strategist::make_plan(config)?;
             plan.explain();
