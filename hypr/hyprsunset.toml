@@ -15,7 +15,7 @@ branch_or_tag = "v0.2.0"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "An application to enable a blue-light filter on Hyprland"

@@ -8,7 +8,7 @@ branch_or_tag = "v2.4.1"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "A material you color generation tool"

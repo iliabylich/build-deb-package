@@ -8,7 +8,7 @@ branch_or_tag = "2.79"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "Actions gestures on your touchpad using libinput"

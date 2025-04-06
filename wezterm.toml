@@ -9,7 +9,7 @@ post_clone_scripts = ["apt update", "./get-deps"]
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "A GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust"

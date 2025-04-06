@@ -8,7 +8,7 @@ branch_or_tag = "v1.0.1"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = " a set of tools to automatically create btrfs snapshots and update grub on any dpkg operations "

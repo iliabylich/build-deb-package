@@ -8,7 +8,7 @@ branch_or_tag = "v0.6.0"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "The official implementation library for the hypr config language."

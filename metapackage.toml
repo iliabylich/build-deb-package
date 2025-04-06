@@ -6,7 +6,7 @@ source = "none"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "Meta-package that depends on all packages that I use"

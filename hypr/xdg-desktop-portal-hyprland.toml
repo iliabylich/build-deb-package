@@ -22,7 +22,7 @@ branch_or_tag = "v1.3.9"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "xdg-desktop-portal backend for Hyprland"

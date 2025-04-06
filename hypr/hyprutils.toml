@@ -8,7 +8,7 @@ branch_or_tag = "v0.5.2"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "Hyprland utilities library used across the ecosystem"

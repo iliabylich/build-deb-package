@@ -143,8 +143,10 @@ impl Strategist {
         Ok(())
     }
     fn write_compat(&mut self) -> Result<()> {
-        let contents = self.templates.compat()?;
-        self.plan.write_file("debian/compat", contents);
+        if let Some(compat) = self.config.debian.compat {
+            let contents = self.templates.compat(compat)?;
+            self.plan.write_file("debian/compat", contents);
+        }
         Ok(())
     }
     fn write_control(&mut self) -> Result<()> {
@@ -162,10 +164,11 @@ impl Strategist {
         Ok(())
     }
     fn write_rules(&mut self) -> Result<()> {
-        let targets = std::mem::take(&mut self.config.debian.rules);
-        let contents = self.templates.rules(targets)?;
-        self.plan.write_file("debian/rules", contents);
-        self.plan.exec("chmod", ["+x", "debian/rules"]);
+        if let Some(targets) = std::mem::take(&mut self.config.debian.rules) {
+            let contents = self.templates.rules(targets)?;
+            self.plan.write_file("debian/rules", contents);
+            self.plan.exec("chmod", ["+x", "debian/rules"]);
+        }
         Ok(())
     }
 

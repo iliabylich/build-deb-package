@@ -142,8 +142,8 @@ impl Source {
 pub(crate) struct Debian {
     pub(crate) changelog: bool,
     pub(crate) control: Option<Control>,
-    #[serde(default)]
-    pub(crate) rules: HashMap<String, Vec<String>>,
+    pub(crate) rules: Option<HashMap<String, Vec<String>>>,
+    pub(crate) compat: Option<u8>,
 }
 
 #[derive(serde::Deserialize, Debug)]

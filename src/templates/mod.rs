@@ -36,10 +36,10 @@ impl Templates {
             .context("failed to render changelog template")
     }
 
-    pub(crate) fn compat(&self) -> Result<String> {
+    pub(crate) fn compat(&self, compat: u8) -> Result<String> {
         self.engine
             .template("compat")
-            .render(upon::value! {})
+            .render(upon::value! { compat: compat })
             .to_string()
             .context("failed to render compat template")
     }

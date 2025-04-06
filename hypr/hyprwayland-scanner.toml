@@ -8,7 +8,7 @@ branch_or_tag = "v0.4.4"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "A Hyprland implementation of wayland-scanner, in and for C++."

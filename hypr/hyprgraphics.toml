@@ -17,7 +17,7 @@ branch_or_tag = "v0.1.2"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "Hyprland graphics / resource utilities"

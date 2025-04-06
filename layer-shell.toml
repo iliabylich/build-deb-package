@@ -22,7 +22,7 @@ branch_or_tag = "master"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "A custom layer shell"

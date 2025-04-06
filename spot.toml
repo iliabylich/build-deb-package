@@ -21,7 +21,7 @@ branch_or_tag = "0.5.0"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "Native Spotify client for the GNOME desktop"

@@ -25,7 +25,7 @@ branch_or_tag = "v0.47.0"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "Hyprland overview plugin like gnome kde or wf."

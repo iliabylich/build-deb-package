@@ -5,7 +5,7 @@ arch = "amd64"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "Terminal JSON viewer & processor"

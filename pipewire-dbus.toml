@@ -8,7 +8,7 @@ branch_or_tag = "v2.0.0"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "A daemon service that triggers Pipewire volume events over DBus"

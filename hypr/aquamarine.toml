@@ -25,7 +25,7 @@ branch_or_tag = "v0.8.0"
 
 [debian]
 changelog = true
-compat = { version = 10 }
+compat = 10
 
 [debian.control]
 description = "Aquamarine is a very light linux rendering backend library"
