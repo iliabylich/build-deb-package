@@ -33,7 +33,6 @@ dependencies = [
     # "zenity",
     # "ghostty",
     # "spot",
-    "timeshift",
     "wezterm",
 
     # Dev tools
