@@ -1,22 +1,22 @@
-version = { specific = "1.0.1" }
-dependencies = ["make", "wget"]
+version = { specific = "2.0.0" }
+dependencies = ["make"]
 arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/iliabylich/make-btrfs-snapshot.git"
-branch_or_tag = "v1.0.1"
+branch_or_tag = "v2.0.0"
 
 [debian]
 changelog = true
 compat = 10
 
 [debian.control]
-description = " a set of tools to automatically create btrfs snapshots and update grub on any dpkg operations "
-dependencies = ["timeshift"]
+description = "a set of tools to automatically create btrfs snapshots and update grub on any dpkg operation"
+dependencies = ["grub2-common", "grub-common", "btrfs-progs"]
 
 [debian.rules]
 "%" = ["dh $@"]
-override_dh_auto_build = ["make sync-grub-btrfs", "make build"]
+override_dh_auto_build = ["make build"]
 override_dh_auto_install = [
     "DESTDIR=\"debian/make-btrfs-snapshot\" make install",
 ]
