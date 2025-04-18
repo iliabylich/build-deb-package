@@ -150,8 +150,7 @@ dependencies = [
     "xdg-desktop-portal-hyprland",
     "unsplash-wallpaper",
     "matugen",
-    "libinput-gestures",
-    # "hyprspace",
+    "hyprspace",
     "bluez",
 ]
 
