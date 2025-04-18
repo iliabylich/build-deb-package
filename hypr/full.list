@@ -13,5 +13,4 @@ hypr/hyprsysteminfo.toml
 hypr/hyprpolkitagent.toml
 hypr/hyprland-qt-support.toml
 hypr/xdg-desktop-portal-hyprland.toml
-hypr/plugins/hyprexpo.toml
 hypr/plugins/hyprspace.toml
