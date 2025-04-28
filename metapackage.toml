@@ -51,7 +51,6 @@ dependencies = [
     "pkg-config",
     "make",
     "git",
-    "gitk",
     "llvm",
     "clang",
     "lld",
@@ -67,7 +66,6 @@ dependencies = [
     # CLI
     "hugo",
     "jq",
-    "jsonnet",
     "nmap",
     "yq",
     "pipx",
@@ -113,7 +111,6 @@ dependencies = [
     "network-manager",
 
     # Libs
-    "libjemalloc2",
     "libjemalloc-dev",
     "libgtk-4-dev",
     "libgtk4-layer-shell-dev",
