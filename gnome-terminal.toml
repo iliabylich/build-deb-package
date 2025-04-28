@@ -1,0 +1,35 @@
+version = { specific = "4.0.0" }
+dependencies = [
+    "meson",
+    "ninja-build",
+    "libgtk-4-dev",
+    "libvte-2.91-gtk4-dev",
+    "libadwaita-1-dev",
+    "gsettings-desktop-schemas-dev",
+    "xsltproc",
+    "itstool",
+]
+arch = "amd64"
+
+[source.git-clone]
+url = "https://gitlab.gnome.org/GNOME/gnome-terminal.git"
+branch_or_tag = "master"
+
+[debian]
+changelog = true
+compat = 10
+
+[debian.control]
+description = "GNOME Terminal"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_configure = [
+    "meson _build --prefix=/usr -Dsearch_provider=false -Ddocs=false -Dnautilus_extension=false",
+]
+override_dh_auto_build = ["ninja -C _build"]
+override_dh_auto_install = [
+    "DESTDIR=$$PWD/debian/gnome-terminal ninja -C _build install",
+]
+override_dh_usrlocal = ["echo skip"]
