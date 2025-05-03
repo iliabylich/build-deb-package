@@ -1,6 +1,5 @@
 use anyhow::{Result, bail};
 use args::Args;
-use clap::Parser;
 use config::Config;
 use input::Input;
 use list::List;

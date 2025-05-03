@@ -5,9 +5,8 @@ edition = "2024"
 
 [dependencies]
 chrono = "0.4"
-clap = { version = "4.5", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }
-toml = "0.8"
+toml = { version = "0.8", default-features = false, features = ["parse"] }
 anstyle = "1.0"
-upon = "0.9"
+upon = { version = "0.9", default-features = false, features = ["serde"] }
 anyhow = "1"
