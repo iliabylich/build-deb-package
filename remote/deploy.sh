@@ -18,10 +18,4 @@ gh workflow run release -f configPath="$CONFIG_PATH" -f runName="$RUN_NAME" -f r
 waitForRunToFinish iliabylich/build-deb-package "$RUN_NAME"
 notify-send "Finished building $CONFIG_PATH"
 
-RUN_NAME="Re-index at $STAMP"
-gh workflow run -R iliabylich/ppa deploy -f runName="$RUN_NAME"
-waitForRunToFinish iliabylich/ppa "$RUN_NAME"
-notify-send "Finished re-indexing PPA"
-
-waitForRunToFinish iliabylich/ppa "pages build and deployment"
-notify-send "GH pages have been deployed!"
+source remote/refresh-ppa.sh
