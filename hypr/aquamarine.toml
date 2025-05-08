@@ -1,4 +1,4 @@
-version = { specific = "0.8.0" }
+version = { specific = "0.8.0-1" }
 dependencies = [
     "libgles2-mesa-dev",
 

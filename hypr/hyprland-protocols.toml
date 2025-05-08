@@ -1,10 +1,10 @@
-version = { specific = "0.6.2" }
+version = { specific = "0.6.4" }
 dependencies = ["meson"]
 arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/hyprwm/hyprland-protocols.git"
-branch_or_tag = "v0.6.2"
+branch_or_tag = "v0.6.4"
 
 [debian]
 changelog = true
