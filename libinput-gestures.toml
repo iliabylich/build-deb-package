@@ -1,10 +1,10 @@
-version = { specific = "2.79.0" }
+version = { specific = "2.80.0" }
 dependencies = []
 arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/bulletmark/libinput-gestures.git"
-branch_or_tag = "2.79"
+branch_or_tag = "2.80"
 
 [debian]
 changelog = true
@@ -16,6 +16,7 @@ dependencies = ["${shlibs:Depends}", "libinput-tools", "python3"]
 
 [debian.rules]
 "%" = ["dh $@"]
+override_dh_auto_build = ["echo skip"]
 override_dh_auto_install = [
     "install -Dm0755 libinput-gestures debian/libinput-gestures/usr/bin/libinput-gestures",
 ]
