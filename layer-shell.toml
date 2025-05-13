@@ -1,10 +1,23 @@
 version = "0-0-stamp"
-dependencies = ["libdbus-1-dev", "libssl-dev", "sassc", "just", "python3"]
+dependencies = [
+    "libgtk-4-dev",
+    "libgtk4-layer-shell-dev",
+    "libvte-2.91-gtk4-dev",
+    "libdbus-1-dev",
+    "libssl-dev",
+    "sassc",
+    "xxd",
+    "meson",
+]
 arch = "amd64"
 
 [source.git-clone]
 url = "https://github.com/iliabylich/layer-shell.git"
 branch_or_tag = "master"
+post_clone_scripts = [
+    "wget https://github.com/mozilla/cbindgen/releases/download/0.28.0/cbindgen -O /bin/cbindgen",
+    "chmod +x /bin/cbindgen",
+]
 
 [debian]
 changelog = true
@@ -12,18 +25,12 @@ compat = 10
 
 [debian.control]
 description = "A custom layer shell"
-dependencies = [
-    "${shlibs:Depends}",
-    "fonts-inter-variable",
-    "python3",
-    "python3-setproctitle",
-    "python3-gi",
-    "libgtk-4-1",
-    "libgtk4-layer-shell0",
-    "libvte-2.91-gtk4-0",
-]
+dependencies = ["${shlibs:Depends}", "fonts-inter-variable"]
 
 [debian.rules]
 "%" = ["dh $@"]
-override_dh_auto_build = ["just build-release"]
-override_dh_auto_install = ["just install debian/layer-shell"]
+override_dh_auto_configure = [
+    "meson setup builddir --buildtype=release --prefix=$$PWD/debian/layer-shell",
+]
+override_dh_auto_build = ["meson compile -C builddir"]
+override_dh_auto_install = ["meson install -C builddir"]
