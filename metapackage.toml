@@ -129,6 +129,7 @@ dependencies = [
     "iwd",
     "fonts-inter-variable",
     "fonts-inter-variable-nerd",
+    "fonts-adwaita-mono-nerd",
 
     # Hyprland
     "hyprland",
