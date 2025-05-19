@@ -155,6 +155,7 @@ dependencies = [
     "hyprspace",
     "bluez",
     "fuzzel",
+    "iwmenu",
 ]
 
 [debian.rules]
