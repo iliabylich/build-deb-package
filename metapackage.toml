@@ -107,9 +107,8 @@ dependencies = [
     "powertop",
     "shellcheck",
     "iputils-ping",
-    "lsb-release",
-    "network-manager",
     "x11-utils",
+    "parallel",
 
     # Libs
     "libjemalloc-dev",
@@ -125,6 +124,11 @@ dependencies = [
     "apt-file",
     "make-btrfs-snapshot",
     "xwayland",
+    "lsb-release",
+    "network-manager",
+    "iwd",
+    "fonts-inter-variable",
+    "fonts-inter-variable-nerd",
 
     # Hyprland
     "hyprland",
@@ -150,6 +154,7 @@ dependencies = [
     "matugen",
     "hyprspace",
     "bluez",
+    "fuzzel",
 ]
 
 [debian.rules]
