@@ -1,0 +1,24 @@
+version = { specific = "3.4.0" }
+dependencies = ["wget", "unzip"]
+arch = "all"
+
+source = "none"
+
+[debian]
+changelog = true
+compat = 10
+
+[debian.control]
+description = "The Adwaita Mono font family (patched with NerdFont)"
+dependencies = []
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = [
+    "wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/AdwaitaMono.zip",
+    "unzip AdwaitaMono.zip",
+]
+override_dh_auto_install = [
+    "mkdir -p debian/fonts-adwaita-mono-nerd/usr/share/fonts/adwaita-mono-nerd",
+    "install -m644 *.ttf debian/fonts-adwaita-mono-nerd/usr/share/fonts/adwaita-mono-nerd/",
+]
