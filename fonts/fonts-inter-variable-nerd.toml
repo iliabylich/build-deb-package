@@ -1,0 +1,27 @@
+version = { specific = "4.1" }
+dependencies = ["wget", "unzip", "python3", "python3-fontforge", "parallel"]
+arch = "all"
+
+source = "none"
+
+[debian]
+changelog = true
+compat = 10
+
+[debian.control]
+description = "The Inter font family (patched with NerdFont)"
+dependencies = []
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_build = [
+    "wget https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip",
+    "unzip Inter-4.1.zip",
+    "wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FontPatcher.zip",
+    "unzip FontPatcher.zip",
+    "/shared/fonts/patch-inter.sh",
+]
+override_dh_auto_install = [
+    "mkdir -p debian/fonts-inter-variable-nerd/usr/share/fonts/inter-nerd",
+    "install -m644 patched/*.otf debian/fonts-inter-variable-nerd/usr/share/fonts/inter-nerd/",
+]
