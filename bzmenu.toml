@@ -1,10 +1,10 @@
-version = { specific = "0.2.1" }
-dependencies = []
+version = { specific = "0.2.0" }
+dependencies = ["libdbus-1-dev"]
 arch = "amd64"
 
 [source.git-clone]
-url = "https://github.com/e-tho/iwmenu.git"
-branch_or_tag = "v0.2.1"
+url = "https://github.com/e-tho/bzmenu.git"
+branch_or_tag = "v0.2.0"
 
 [debian]
 changelog = true
@@ -12,11 +12,11 @@ compat = 10
 
 [debian.control]
 description = "Launcher-driven Wi-Fi manager for Linux"
-dependencies = ["${shlibs:Depends}", "iwd"]
+dependencies = ["${shlibs:Depends}", "bluez"]
 
 [debian.rules]
 "%" = ["dh $@"]
 override_dh_auto_build = ["cargo build --release"]
 override_dh_auto_install = [
-    "install -Dm0755 target/release/iwmenu debian/iwmenu/usr/bin/iwmenu",
+    "install -Dm0755 target/release/bzmenu debian/bzmenu/usr/bin/bzmenu",
 ]
