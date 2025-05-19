@@ -156,6 +156,7 @@ dependencies = [
     "bluez",
     "fuzzel",
     "iwmenu",
+    "bzmenu",
 ]
 
 [debian.rules]
