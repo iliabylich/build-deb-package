@@ -23,6 +23,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: extractions/setup-just@v2
 
+      - run: sudo apt update
+      - run: sudo apt install podman
+
+      - run: podman --version
       - run: just build ${{ github.event.inputs.configPath }}
 
       - run: ls -l
