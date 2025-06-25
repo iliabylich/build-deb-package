@@ -63,6 +63,8 @@ dependencies = [
     "xxd",
     "clang-tidy",
     "blueprint-compiler",
+    "podman",
+    "musl",
 
     # CLI
     "hugo",
@@ -119,6 +121,7 @@ dependencies = [
     "libdbus-1-dev",
     "libssl-dev",
     "libclang-rt-dev",
+    "musl-dev",
 
     # Debian
     "apt-file",
@@ -127,6 +130,10 @@ dependencies = [
     "lsb-release",
     "network-manager",
     "iwd",
+    "discover",
+    "ncurses-term",
+    "xdg-utils",
+    "wireless-tools",
     "fonts-inter-variable",
     "fonts-inter-variable-nerd",
     "fonts-adwaita-mono-nerd",
