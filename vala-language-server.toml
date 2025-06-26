@@ -1,0 +1,32 @@
+version = { specific = "0.48.7" }
+dependencies = [
+    "meson",
+    "libglib2.0-dev",
+    "libgio-2.0-dev",
+    "libgee-0.8-dev",
+    "libjson-glib-dev",
+    "libjsonrpc-glib-1.0-dev",
+    "libvala-0.56-dev",
+    "valac",
+]
+arch = "amd64"
+
+[source.git-clone]
+url = "https://github.com/vala-lang/vala-language-server.git"
+branch_or_tag = "0.48.7"
+
+[debian]
+changelog = true
+compat = 10
+
+[debian.control]
+description = "Code Intelligence for Vala & Genie"
+dependencies = ["${shlibs:Depends}"]
+
+[debian.rules]
+"%" = ["dh $@"]
+override_dh_auto_configure = [
+    "meson -Dprefix=$$PWD/debian/vala-language-server/usr build",
+]
+override_dh_auto_build = ["ninja -C build"]
+override_dh_auto_install = ["ninja -C build install"]
